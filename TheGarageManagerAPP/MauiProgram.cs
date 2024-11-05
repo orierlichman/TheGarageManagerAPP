@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
+using TheGarageManagerApp.Services;
+using TheGarageManagerAPP.ViewModels;
+using TheGarageManagerAPP.Views;
 
 namespace TheGarageManagerAPP
 {
@@ -29,15 +32,18 @@ namespace TheGarageManagerAPP
 
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<LoginView>();
             return builder;
         }
 
         public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
         {
+            builder.Services.AddSingleton<TheGarageManagerWebAPIProxy>();
             return builder;
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<LoginViewModel>();
             return builder;
         }
 

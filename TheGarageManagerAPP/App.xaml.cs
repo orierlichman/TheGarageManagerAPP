@@ -1,30 +1,32 @@
 ﻿using TheGarageManagerAPP.Models;
+using TheGarageManagerApp.Services;
+using TheGarageManagerAPP.Views;
 
 namespace TheGarageManagerAPP
 {
     public partial class App : Application
     {
-        public App()
-        {
-            InitializeComponent();
+        //public App()
+        //{
+        //    InitializeComponent();
 
-            MainPage = new AppShell();
-        }
+        //    MainPage = new AppShell();
+        //}
         //public partial class App : Application
         //{
         //    //Application level variables
             public UserModels? LoggedInUser { get; set; }
-        //    public List<UrgencyLevel> UrgencyLevels { get; set; } = new List<UrgencyLevel>();
-        //    private TasksManagementWebAPIProxy proxy;
-        //    public App(IServiceProvider serviceProvider, TasksManagementWebAPIProxy proxy)
-        //    {
-        //        this.proxy = proxy;
-        //        InitializeComponent();
-        //        LoggedInUser = null;
-        //        LoadBasicDataFromServer();
-        //        //Start with the Login View
-        //        MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
-        //    }
+        //public List<UrgencyLevel> UrgencyLevels { get; set; } = new List<UrgencyLevel>();
+        private TheGarageManagerWebAPIProxy proxy;
+        public App(IServiceProvider serviceProvider, TheGarageManagerWebAPIProxy proxy)
+        {
+            this.proxy = proxy;
+            LoggedInUser = null;
+            InitializeComponent();
+            //LoadBasicDataFromServer();
+            //Start with the Login View
+            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
+        }
 
         //    private async void LoadBasicDataFromServer()
         //    {
