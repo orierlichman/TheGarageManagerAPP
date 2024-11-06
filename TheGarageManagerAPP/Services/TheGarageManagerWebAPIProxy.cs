@@ -91,5 +91,77 @@ namespace TheGarageManagerApp.Services
         }
 
 
+
+
+
+        //This methos call the Register web API on the server and return the AppUser object with the given ID
+        //or null if the call fails
+        public async Task<UserModels?> Register(UserModels user)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}register";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(user);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    UserModels? result = JsonSerializer.Deserialize<UserModels>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<UserStatusModels>?> GetUserStatusAsync()
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}GetUserStatuses";
+            try
+            {
+                //Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<UserStatusModels>? result = JsonSerializer.Deserialize<List<UserStatusModels>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
     }
 }

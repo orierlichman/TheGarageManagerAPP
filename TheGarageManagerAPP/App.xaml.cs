@@ -6,40 +6,33 @@ namespace TheGarageManagerAPP
 {
     public partial class App : Application
     {
-        //public App()
-        //{
-        //    InitializeComponent();
+       
+        public UserModels? LoggedInUser { get; set; }
 
-        //    MainPage = new AppShell();
-        //}
-        //public partial class App : Application
-        //{
-        //    //Application level variables
-            public UserModels? LoggedInUser { get; set; }
-        //public List<UrgencyLevel> UrgencyLevels { get; set; } = new List<UrgencyLevel>();
+        public List<UserStatusModels> UserStatuses { get; set; } = new List<UserStatusModels>();
         private TheGarageManagerWebAPIProxy proxy;
         public App(IServiceProvider serviceProvider, TheGarageManagerWebAPIProxy proxy)
         {
             this.proxy = proxy;
             LoggedInUser = null;
             InitializeComponent();
-            //LoadBasicDataFromServer();
+            LoadBasicDataFromServer();
             //Start with the Login View
             MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
         }
 
-        //    private async void LoadBasicDataFromServer()
-        //    {
-        //        List<UrgencyLevel>? levels = await this.proxy.GetUrgencyLevels();
-        //        if (levels != null)
-        //        {
-        //            UrgencyLevels.Clear();
-        //            foreach (UrgencyLevel level in levels)
-        //            {
-        //                UrgencyLevels.Add(level);
-        //            }
-        //        }
-        //    }
-        //}
+        private async void LoadBasicDataFromServer()
+        {
+            List<UserStatusModels>? statuses = await this.proxy.GetUserStatusAsync();
+            if (statuses != null)
+            {
+                UserStatuses.Clear();
+                foreach (UserStatusModels s in statuses)
+                {
+                    UserStatuses.Add(s);
+                }
+            }
+        }
     }
 }
+

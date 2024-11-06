@@ -16,5 +16,7 @@ namespace TheGarageManagerAPP.Models
         public int UserGarageID { get; set; }
         public int? UserStatusID { get; set; }
 
+        public UserModels() { }
+
     }
 }
