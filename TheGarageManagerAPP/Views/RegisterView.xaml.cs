@@ -1,9 +1,12 @@
+using TheGarageManagerAPP.ViewModels;
+
 namespace TheGarageManagerAPP.Views;
 
 public partial class RegisterView : ContentPage
 {
-	public RegisterView()
-	{
-		InitializeComponent();
-	}
+    public RegisterView(RegisterViewModel vm)
+    {
+        this.BindingContext = vm;
+        InitializeComponent();
+    }
 }

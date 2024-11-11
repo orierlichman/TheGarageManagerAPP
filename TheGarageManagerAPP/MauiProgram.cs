@@ -32,6 +32,7 @@ namespace TheGarageManagerAPP
 
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<RegisterView>();
             builder.Services.AddTransient<LoginView>();
             return builder;
         }
@@ -43,6 +44,7 @@ namespace TheGarageManagerAPP
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<LoginViewModel>();
             return builder;
         }

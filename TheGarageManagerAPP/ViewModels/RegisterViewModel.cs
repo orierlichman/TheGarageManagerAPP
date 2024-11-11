@@ -308,8 +308,8 @@ namespace TheGarageManagerAPP.ViewModels
                     UserLastName = LastName,
                     Email = Email,
                     UserPassword = Password,
-                    UserStatusID = SelectedStatus.StatusID
-                    //UserGarageID = ***
+                    UserStatusID = SelectedStatus.StatusID,
+                    UserGarageID = 103 //TO DO: Need to replace with a rel garage id
                 };
 
                 //Call the Register method on the proxy to register the new user
