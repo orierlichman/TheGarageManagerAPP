@@ -22,6 +22,7 @@ namespace TheGarageManagerAPP.ViewModels
             this.proxy = proxy;
             LoginCommand = new Command(OnLogin);
             RegisterCommand = new Command(OnRegister);
+            ShowPasswordCommand = new Command(OnShowPassword);
             email = "";
             password = "";
             InServerCall = false;
@@ -116,6 +117,28 @@ namespace TheGarageManagerAPP.ViewModels
             ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
         }
 
+
+        private bool isPassword = true;
+        public bool IsPassword
+        {
+            get
+            {
+                return this.isPassword;
+            }
+            set
+            {
+                isPassword = value;
+                OnPropertyChanged("IsPassword");
+            }
+        }
+        //This command will trigger on pressing the password eye icon
+        public Command ShowPasswordCommand { get; }
+        //This method will be called when the password eye icon is pressed
+        public void OnShowPassword()
+        {
+            //Toggle the password visibility
+            IsPassword = !IsPassword;
+        }
 
     }
 }

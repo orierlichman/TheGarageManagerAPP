@@ -64,9 +64,21 @@
 
 
             <!-- UserStatusID -->
-            <Picker x:Name="picker"                   
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="select your type user" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                <Picker x:Name="picker"                   
+        Title="select your type user" ItemsSource="{Binding StatusModels}" SelectedItem="{Binding SelectedStatus}" ItemDisplayBinding="{Binding StatusName}" Margin="10">
+                </Picker>
+
+            </Grid>
+
+            <!--<Picker x:Name="picker"                   
         Title="select your type user" ItemsSource="{Binding StatusModels}" SelectedItem="{Binding SelectedStatus}" ItemDisplayBinding="{Binding StatusName}">
-            </Picker>
+            </Picker>-->
 
 
 
@@ -76,8 +88,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="Register" Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
-                <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"/>
+                <Button Text="Register" Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" BackgroundColor="Green" Margin="5" />
+                <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"  BackgroundColor="Red" Margin="5" />
             </Grid>
         </VerticalStackLayout>
         <!-- Centered ActivityIndicator -->
