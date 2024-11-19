@@ -4,12 +4,42 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TheGarageManagerAPP"
+    xmlns:Views="clr-namespace:TheGarageManagerAPP.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="TheGarageManagerAPP">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs" >
+
+        <ShellContent
+         Title="TheGarageHomaPage" Icon="passwordeye.jpg" 
+         ContentTemplate="{DataTemplate Views:TheGarageHomaPageView}"
+         Route="TheGarageHomaPage" />
+
+        <ShellContent
+         Title="CarRepair" Icon="passwordeye.jpg" 
+         ContentTemplate="{DataTemplate Views:CarRepairView}"
+         Route="CarRepair" />
+
+        <ShellContent
+         Title="AllVehicles" Icon="passwordeye.jpg" 
+         ContentTemplate="{DataTemplate Views:AllVehiclesView}"
+         Route="AllVehicles" />
+
+        <ShellContent
+         Title="Appointment" Icon="passwordeye.jpg" 
+         ContentTemplate="{DataTemplate Views:AppointmentView}"
+         Route="Appointment" />
+
+        <ShellContent
+         Title="Parts" Icon="passwordeye.jpg" 
+         ContentTemplate="{DataTemplate Views:PartsView}"
+         Route="Parts" />
+
+        <ShellContent
+         Title="Profile" Icon="passwordeye.jpg" 
+         ContentTemplate="{DataTemplate Views:ProfileView}"
+         Route="Profile" />
+
+    </FlyoutItem>
 
 </Shell>
