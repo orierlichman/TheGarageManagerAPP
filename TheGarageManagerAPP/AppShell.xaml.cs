@@ -1,4 +1,5 @@
 ﻿using TheGarageManagerAPP.ViewModels;
+using TheGarageManagerAPP.Views;
 
 namespace TheGarageManagerAPP
 {
@@ -8,6 +9,15 @@ namespace TheGarageManagerAPP
         {
             this.BindingContext = vm;
             InitializeComponent();
+            RegisterRoutes();
         }
+
+        private void RegisterRoutes()
+        {
+            Routing.RegisterRoute("theGaragesHomePageView", typeof(TheGarageHomaPageView));
+            Routing.RegisterRoute("llVehiclesView", typeof(AllVehiclesView));
+            Routing.RegisterRoute("updateProfileView", typeof(ProfileView));
+        }
+
     }
 }
