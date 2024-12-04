@@ -57,7 +57,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\appointment.png" />
+	  <None Remove="Resources\Images\car.png" />
+	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\passwordeye.jpg" />
+	  <None Remove="Resources\Images\repair.png" />
 	</ItemGroup>
 
 	<ItemGroup>

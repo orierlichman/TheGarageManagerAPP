@@ -36,7 +36,7 @@ namespace TheGarageManagerAPP
             builder.Services.AddTransient<LoginView>();
             builder.Services.AddTransient<AllVehiclesView>();
             builder.Services.AddTransient<AppointmentView>();
-            builder.Services.AddTransient<AppShellView>();
+            builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<CarRepairView>();
             builder.Services.AddTransient<PartsView>();
             builder.Services.AddTransient<ProfileView>();

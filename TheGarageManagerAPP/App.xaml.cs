@@ -18,7 +18,10 @@ namespace TheGarageManagerAPP
             InitializeComponent();
             LoadBasicDataFromServer();
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
+            //MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
+            LoginView? v = serviceProvider.GetService<LoginView>();
+
+            MainPage = new NavigationPage(v);
         }
 
         private async void LoadBasicDataFromServer()
