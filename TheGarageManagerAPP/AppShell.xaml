@@ -16,7 +16,7 @@
          Route="TheGarageHomaPage" />
 
         <ShellContent
-         Title="CarRepair" Icon="repair.png" 
+         Title="CarRepair" Icon="repairblack.png"
          ContentTemplate="{DataTemplate Views:CarRepairView}"
          Route="CarRepair" />
 
@@ -31,12 +31,12 @@
          Route="Appointment" />
 
         <ShellContent
-         Title="Parts" Icon="passwordeye.jpg" 
+         Title="Parts" Icon="repair.png" 
          ContentTemplate="{DataTemplate Views:PartsView}"
          Route="Parts" />
 
         <ShellContent
-         Title="Profile" Icon="passwordeye.jpg" 
+         Title="Profile" Icon="profile.png" 
          ContentTemplate="{DataTemplate Views:ProfileView}"
          Route="Profile" />
 

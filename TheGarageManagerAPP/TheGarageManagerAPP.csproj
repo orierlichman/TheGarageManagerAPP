@@ -59,9 +59,13 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\appointment.png" />
 	  <None Remove="Resources\Images\car.png" />
+	  <None Remove="Resources\Images\garagehome.jpg" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\passwordeye.jpg" />
+	  <None Remove="Resources\Images\profile.png" />
 	  <None Remove="Resources\Images\repair.png" />
+	  <None Remove="Resources\Images\repairblack.png" />
+	  <None Remove="Resources\Images\repairtrue.png" />
 	</ItemGroup>
 
 	<ItemGroup>
