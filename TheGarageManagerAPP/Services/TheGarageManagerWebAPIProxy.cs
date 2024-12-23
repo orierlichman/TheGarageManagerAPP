@@ -163,5 +163,46 @@ namespace TheGarageManagerApp.Services
         }
 
 
+
+        public async Task<List<GaragePartsModels>?> GetAllGaragePartsAsync()
+        {
+            // Set URI to the specific function API
+            string url = $"{this.baseUrl}getAllGarageParts";
+
+            try
+            {
+                // Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    // Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize result to List<GaragePartsDTO>
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<GaragePartsModels> result = JsonSerializer.Deserialize<List<GaragePartsModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and return null if something goes wrong
+                return null;
+            }
+        }
+
+
+
     }
+
 }
