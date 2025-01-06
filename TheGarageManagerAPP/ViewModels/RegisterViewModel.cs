@@ -23,7 +23,7 @@ namespace TheGarageManagerAPP.ViewModels
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             StatusModels = ((App)Application.Current).UserStatuses;
-            SelectedStatus = StatusModels[0];
+            SelectedStatus = StatusModels[1];
 
         }
 

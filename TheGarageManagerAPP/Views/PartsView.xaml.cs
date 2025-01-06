@@ -1,9 +1,12 @@
 namespace TheGarageManagerAPP.Views;
 
+using TheGarageManagerAPP.ViewModels;
+
 public partial class PartsView : ContentPage
 {
-	public PartsView()
+	public PartsView(PartsViewModels vm)
 	{
+		this.BindingContext = vm;
 		InitializeComponent();
 	}
 }
