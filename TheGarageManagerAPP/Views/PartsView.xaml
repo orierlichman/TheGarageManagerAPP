@@ -8,8 +8,9 @@
     <ContentPage.Content>
         <ScrollView Padding="10">
             <CollectionView ItemsSource="{Binding GarageParts}" 
-                            IsVisible="{Binding GarageParts, Converter={StaticResource EmptyListToBoolConverter}}">
+                            >
                 <CollectionView.ItemTemplate>
+
                     <DataTemplate>
                         <Grid ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, Auto" Padding="5">
                             <!-- תמונה 1 -->
@@ -31,6 +32,7 @@
                                    HorizontalOptions="Center" 
                                    VerticalOptions="Center" 
                                    Grid.Row="2" Grid.ColumnSpan="2" />
+
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
