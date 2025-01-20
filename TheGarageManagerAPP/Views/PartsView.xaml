@@ -6,37 +6,49 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ContentPage.Content>
-        <ScrollView Padding="10">
-            <CollectionView ItemsSource="{Binding GarageParts}" 
-                            >
-                <CollectionView.ItemTemplate>
 
-                    <DataTemplate>
-                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, Auto" Padding="5">
-                            <!-- תמונה 1 -->
-                            <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="120" Grid.Row="0" Grid.Column="0" />
+        <StackLayout>
 
-                            <!-- תמונה 2 -->
-                            <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="120" Grid.Row="0" Grid.Column="1" />
+            <!-- תיבת חיפוש בראש העמוד -->
+            <SearchBar 
+                Placeholder="חפש חלק..." 
+                Text="{Binding SearchText}" 
+                VerticalOptions="CenterAndExpand" 
+                Margin="0,0,0,10"/>
 
-                            <!-- שם החלק -->
-                            <Label Text="{Binding PartName}" 
+            <ScrollView Padding="10">
+                <CollectionView ItemsSource="{Binding GarageParts}">
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto" Padding="5">
+                                <!-- תמונה 1 -->
+                                <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="120" Grid.Row="0" HorizontalOptions="Center"  />
+
+                                <!-- תמונה 2 -->
+                                <!--
+                            <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="120" Grid.Row="0" Grid.Column="1" />-->
+
+                                <!-- שם החלק -->
+                                <Label Text="{Binding PartName}" 
                                    FontSize="Medium" 
                                    HorizontalOptions="Center" 
                                    VerticalOptions="Center" 
                                    Grid.Row="1" Grid.ColumnSpan="2" />
 
-                            <!-- מחיר -->
-                            <Label Text="{Binding Cost, StringFormat='${0}'}" 
+                                <!-- מחיר -->
+                                <Label Text="{Binding Cost, StringFormat='${0}'}" 
                                    FontSize="Small" 
                                    HorizontalOptions="Center" 
                                    VerticalOptions="Center" 
                                    Grid.Row="2" Grid.ColumnSpan="2" />
 
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </ScrollView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
