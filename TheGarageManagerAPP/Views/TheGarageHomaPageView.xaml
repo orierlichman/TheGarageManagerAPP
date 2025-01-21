@@ -5,8 +5,17 @@
              Title="TheGarageHomaPageView">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Welcome to the GARAGE "
             VerticalOptions="Center"           
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            FontSize="Large"/>
+
+        <Button Text="Parts" Command="{Binding PartsCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
+        <Button Text="AllVehicles" Command="{Binding AllVehiclesCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
+        <Button Text="Profile" Command="{Binding ProfileCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
+        <Button Text="Appointment" Command="{Binding AppointmentCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
+        <Button Text="CarRepair" Command="{Binding CarRepairCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
+
+
     </VerticalStackLayout>
 </ContentPage>

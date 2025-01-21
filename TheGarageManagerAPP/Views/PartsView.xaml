@@ -6,17 +6,18 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ContentPage.Content>
+        <!-- StackLayout הכולל את תיבת החיפוש ו-CollectionView -->
+        <StackLayout Padding="10">
 
-        <StackLayout>
-
-            <!-- תיבת חיפוש בראש העמוד -->
-            <SearchBar 
-                Placeholder="חפש חלק..." 
+            <!-- תיבת חיפוש -->
+            <Entry 
+                Placeholder="search..." 
                 Text="{Binding SearchText}" 
-                VerticalOptions="CenterAndExpand" 
-                Margin="0,0,0,10"/>
+                HorizontalOptions="FillAndExpand" 
+                Margin="0,0,0,10" />
 
-            <ScrollView Padding="10">
+            <!-- רשימת החלקים -->
+            <ScrollView>
                 <CollectionView ItemsSource="{Binding GarageParts}">
                     <CollectionView.ItemTemplate>
 

@@ -13,8 +13,9 @@ namespace TheGarageManagerAPP.ViewModels
 {
     public class PartsViewModels : ViewModelBase
     {
-        ////This is a List containing all of the user tasks
-        //private List<GaragePartsModels> garagePartsModels;
+        //This is a List containing all of the garage parts
+        private List<GaragePartsModels> garagePartsModels;
+
         private string _searchText;
 
         private TheGarageManagerWebAPIProxy proxy;
@@ -35,18 +36,6 @@ namespace TheGarageManagerAPP.ViewModels
         public ICommand SearchTextChangedCommand { get; }
 
 
-        //Search bar text
-        //private string searchText;
-        //public string SearchText
-        //{
-        //    get => searchText;
-        //    set
-        //    {
-        //        searchText = value;
-        //        FilterTasks();
-        //        OnPropertyChanged();
-        //    }
-        //}
         public string SearchText
         {
             get => _searchText;
@@ -97,34 +86,6 @@ namespace TheGarageManagerAPP.ViewModels
                 }
             }
         }
-
-
-        ////this method filter the tasks based on the search text and the show done and show not done tasks
-        //private void FilterTasks()
-        //{
-        //    List<UrgencyLevel> urgencyLevels = ((App)Application.Current).UrgencyLevels;
-        //    garageParts.Clear();
-        //    //Sort the tasks by urgency level
-        //    garagePartsModels.OrderByDescending(t => t.UrgencyLevelId);
-
-        //    foreach (var task in garagePartsModels)
-        //    {
-        //        if ((task.TaskActualDate.HasValue && this.showDoneTasks || !task.TaskActualDate.HasValue && this.showNotDoneTasks) &&
-        //            (task.TaskDescription.Contains(SearchText) || string.IsNullOrEmpty(SearchText)))
-        //        {
-        //            string urgency = urgencyLevels.Where(u => u.UrgencyLevelId == task.UrgencyLevelId).FirstOrDefault().UrgencyLevelName;
-        //            FilteredUserTasks.Add(new TaskDisplay()
-        //            {
-        //                Id = task.TaskId,
-        //                Description = task.TaskDescription,
-        //                Urgency = urgency,
-        //                DueDate = task.TaskDueDate,
-        //                ActualDate = task.TaskActualDate
-        //            });
-        //        }
-        //    }
-
-        //}
 
 
 
