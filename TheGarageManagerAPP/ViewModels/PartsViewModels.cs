@@ -13,8 +13,8 @@ namespace TheGarageManagerAPP.ViewModels
 {
     public class PartsViewModels : ViewModelBase
     {
-        //This is a List containing all of the garage parts
-        private List<GaragePartsModels> garagePartsModels;
+        ////This is a List containing all of the garage parts
+        //private List<GaragePartsModels> garagePartsModels;
 
         private string _searchText;
 
