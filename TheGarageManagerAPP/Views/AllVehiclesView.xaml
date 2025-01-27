@@ -3,10 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheGarageManagerAPP.Views.AllVehiclesView"
              Title="AllVehiclesView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <!-- חיפוש רכבים -->
+            <SearchBar 
+                Placeholder="חפש רכב לפי לוח רישוי"
+                Text="{Binding SearchText}"
+                Margin="0,0,0,10"/>
+
+            <!-- ListView להצגת רכבים -->
+            <ListView ItemsSource="{Binding GarageVehicle}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding SearchTextChangedCommand}">
+
+                <!-- תבנית ItemTemplate להצגת כל רכב -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10" RowSpacing="10" ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- תמונה של הרכב -->
+                                <Image Source="{Binding ImageURL}" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
+
+                                <!-- פרטי הרכב -->
+                                <StackLayout Padding="10, 0" Grid.Row="0" Grid.Column="1">
+                                    <Label Text="{Binding Model}" FontSize="Medium" />
+                                    <Label Text="{Binding Manufacturer}" FontSize="Small" TextColor="Gray"/>
+                                    <Label Text="{Binding YearVehicle}" FontSize="Small"/>
+                                    <Label Text="{Binding LicensePlate}" FontSize="Small" TextColor="Gray"/>
+                                    <Label Text="{Binding FuelType}" FontSize="Small"/>
+                                    <Label Text="{Binding CurrentMileage}" FontSize="Small" TextColor="Gray"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+
 </ContentPage>
