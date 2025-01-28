@@ -7,18 +7,22 @@
 
     <ContentPage.Content>
         <!-- StackLayout הכולל את תיבת החיפוש ו-CollectionView -->
-        <StackLayout Padding="10">
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+            </Grid.RowDefinitions>
 
             <!-- תיבת חיפוש -->
-            <Entry 
+            <SearchBar Grid.Row="0"
                 Placeholder="search..." 
                 Text="{Binding SearchText}" 
                 HorizontalOptions="FillAndExpand" 
                 Margin="0,0,0,10" />
 
             <!-- רשימת החלקים -->
-            <ScrollView>
-                <CollectionView ItemsSource="{Binding GarageParts}">
+            
+                <CollectionView ItemsSource="{Binding GarageParts}" Grid.Row="1">
                     <CollectionView.ItemTemplate>
 
                         <DataTemplate>
@@ -49,7 +53,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </ScrollView>
-        </StackLayout>
+            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
