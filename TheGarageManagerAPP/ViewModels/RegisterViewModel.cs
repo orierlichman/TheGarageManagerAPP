@@ -74,7 +74,6 @@ namespace TheGarageManagerAPP.ViewModels
         #endregion
 
 
-
         #region LastName
         private bool showLastNameError;
 
@@ -118,11 +117,6 @@ namespace TheGarageManagerAPP.ViewModels
             this.ShowLastNameError = string.IsNullOrEmpty(LastName);
         }
         #endregion
-
-
-
-
-
 
 
         #region Email
@@ -186,6 +180,8 @@ namespace TheGarageManagerAPP.ViewModels
             }
         }
         #endregion
+
+
         #region Password
         private bool showPasswordError;
 

@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
              x:Class="TheGarageManagerAPP.Views.ProfileView"
              Title="ProfileView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+
+            <!-- First Name -->
+            <Label Text="First Name" FontSize="Medium" />
+            <Entry Text="{Binding Name}" Placeholder="Enter First Name" />
+            <Label Text="{Binding NameError}" TextColor="Red" IsVisible="{Binding ShowNameError}" />
+
+            <!-- Last Name -->
+            <Label Text="Last Name" FontSize="Medium" />
+            <Entry Text="{Binding LastName}" Placeholder="Enter Last Name" />
+            <Label Text="{Binding LastNameError}" TextColor="Red" IsVisible="{Binding ShowLastNameError}" />
+
+            <!-- Email -->
+            <Label Text="Email" FontSize="Medium" />
+            <Entry Text="{Binding Email}" Placeholder="Enter Email" />
+            <Label Text="{Binding EmailError}" TextColor="Red" IsVisible="{Binding ShowEmailError}" />
+
+            <!-- Password -->
+            <Label Text="Password" FontSize="Medium" />
+            <Entry Text="{Binding Password}" IsPassword="{Binding IsPassword}" Placeholder="Enter Password" />
+            <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}" />
+
+            <!-- Status --><!--
+            <Label Text="Status" FontSize="Medium" />
+            <Picker SelectedItem="{Binding SelectedStatus}" ItemsSource="{Binding StatusModels}" ItemDisplayBinding="{Binding StatusName}" />-->
+
+            <!-- Save Button -->
+            <Button Text="Save Profile" Command="{Binding UpdateUserCommand}"  />
+
+            <!-- Loading Indicator (optional) -->
+            <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}" />
+
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
