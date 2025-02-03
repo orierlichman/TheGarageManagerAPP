@@ -24,7 +24,7 @@
 
             <!-- Password -->
             <Label Text="Password" FontSize="Medium" />
-            <Entry Text="{Binding Password}" IsPassword="{Binding IsPassword}" Placeholder="Enter Password" />
+            <Entry Text="{Binding Password}" Placeholder="Enter Password" />
             <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}" />
 
             <!-- Status --><!--
