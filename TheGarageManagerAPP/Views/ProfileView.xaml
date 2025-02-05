@@ -27,9 +27,10 @@
             <Entry Text="{Binding Password}" Placeholder="Enter Password" />
             <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}" />
 
-            <!-- Status --><!--
+             <!--Status--> 
             <Label Text="Status" FontSize="Medium" />
-            <Picker SelectedItem="{Binding SelectedStatus}" ItemsSource="{Binding StatusModels}" ItemDisplayBinding="{Binding StatusName}" />-->
+            <Entry Text="{Binding Status}" />
+            <Picker SelectedItem="{Binding SelectedStatus}" ItemsSource="{Binding StatusModels}" ItemDisplayBinding="{Binding StatusName}" />
 
             <!-- Save Button -->
             <Button Text="Save Profile" Command="{Binding UpdateUserCommand}"  />

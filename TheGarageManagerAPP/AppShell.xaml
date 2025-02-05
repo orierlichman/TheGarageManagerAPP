@@ -41,5 +41,9 @@
          Route="Profile" />
 
     </FlyoutItem>
+    
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" IconImageSource = "logout.png" />
+
+
 
 </Shell>

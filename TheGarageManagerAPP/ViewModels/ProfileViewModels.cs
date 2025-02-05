@@ -271,7 +271,54 @@ namespace TheGarageManagerAPP.ViewModels
 
 
 
-        
+
+        #endregion
+
+
+        #region Status
+
+        private string status;
+
+        public string Status
+        {
+            get => status;
+            set
+            {
+                status = value;
+                ValidateStatus();
+                OnPropertyChanged("Status");
+            }
+        }
+
+        private bool showStatusError;
+
+        public bool ShowStatusError
+        {
+            get => showStatusError;
+            set
+            {
+                showStatusError = value;
+                OnPropertyChanged("ShowStatusError");
+            }
+        }
+
+        private string statusError;
+
+        public string StatusError
+        {
+            get => statusError;
+            set
+            {
+                statusError = value;
+                OnPropertyChanged("StatusError");
+            }
+        }
+
+
+        private void ValidateStatus()
+        {
+            this.showStatusError = string.IsNullOrEmpty(Status);
+        }
         #endregion
 
 
