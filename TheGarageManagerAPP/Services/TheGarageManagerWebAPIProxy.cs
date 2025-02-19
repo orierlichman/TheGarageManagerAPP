@@ -322,7 +322,7 @@ namespace TheGarageManagerApp.Services
 
 
 
-        public async Task<List<AppointmentModels>?> GetAppointmentStatusesAsync()
+        public async Task<List<AppointmentStatusModels>?> GetAppointmentStatusesAsync()
         {
             // הגדרת ה-URI של ה-API
             string url = $"{this.baseUrl}getAppointmentStatuses";
@@ -343,7 +343,7 @@ namespace TheGarageManagerApp.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    List<AppointmentModels>? result = JsonSerializer.Deserialize<List<AppointmentModels>>(resContent, options);
+                    List<AppointmentStatusModels>? result = JsonSerializer.Deserialize<List<AppointmentStatusModels>>(resContent, options);
                     return result;
                 }
                 else

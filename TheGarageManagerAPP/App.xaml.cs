@@ -10,6 +10,7 @@ namespace TheGarageManagerAPP
         public UserModels? LoggedInUser { get; set; }
 
         public List<UserStatusModels> UserStatuses { get; set; } = new List<UserStatusModels>();
+        public List<AppointmentStatusModels> AppointmentStatuses { get; set; } = new List<AppointmentStatusModels>();
         private TheGarageManagerWebAPIProxy proxy;
         public App(IServiceProvider serviceProvider, TheGarageManagerWebAPIProxy proxy)
         {
@@ -33,6 +34,16 @@ namespace TheGarageManagerAPP
                 foreach (UserStatusModels s in statuses)
                 {
                     UserStatuses.Add(s);
+                }
+            }
+
+            List<AppointmentStatusModels>? appStatus = await this.proxy.GetAppointmentStatusesAsync();
+            if (appStatus != null)
+            {
+                AppointmentStatuses.Clear();
+                foreach (var s in appStatus)
+                {
+                    AppointmentStatuses.Add(s);
                 }
             }
         }
