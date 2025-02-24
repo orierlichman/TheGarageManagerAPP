@@ -22,6 +22,7 @@ namespace TheGarageManagerAPP.ViewModels
             InServerCall = false;
             OnApproveCommand = new Command<AppointmentModels>(OnApprove);
             OnDeclineCommand = new Command<AppointmentModels>(OnDecline);
+            Appointment = new ObservableCollection<AppointmentModels>();
             InitData();
         }
 

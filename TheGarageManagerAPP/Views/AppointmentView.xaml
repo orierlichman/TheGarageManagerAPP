@@ -1,68 +1,93 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TheGarageManagerAPP.Views.AppointmentView"
-             xmlns:models="clr-namespace:TheGarageManagerAPP.Models"
-             xmlns:viewModels="clr-namespace:TheGarageManagerAPP.ViewModels"
-             Title="AppointmentView">
+<ContentPage
+    x:Class="TheGarageManagerAPP.Views.AppointmentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:TheGarageManagerAPP.Models"
+    xmlns:viewModels="clr-namespace:TheGarageManagerAPP.ViewModels"
+    Title="AppointmentView">
 
 
 
     <ContentPage.Content>
         <StackLayout Padding="10">
 
-            <!-- Picker for Appointment Status -->
-            <Picker Title="Select Status" 
-                ItemsSource="{Binding AppStatuses}"  
-                SelectedItem="{Binding SelectedStatus}" 
-                Grid.Row="1" 
-                ItemDisplayBinding="{Binding StatusText}" 
-                BackgroundColor="#E3EAFD" 
-                TextColor="#1E3A8A" 
+            <!--  Picker for Appointment Status  -->
+            <Picker
+                Title="Status"
+                Margin="20,5"
+                BackgroundColor="#E3EAFD"
                 FontSize="16"
                 HorizontalOptions="FillAndExpand"
-                Margin="20,5"/>
+                ItemDisplayBinding="{Binding StatusText}"
+                ItemsSource="{Binding AppStatuses}"
+                SelectedItem="{Binding SelectedStatus}"
+                TextColor="#1E3A8A" />
 
-            
+            <!--<Picker
+                x:Name="Status"
+                Title="Select Status"
+                Margin="20,5"
+                BackgroundColor="#E3EAFD"
+                FontSize="16"
+                HorizontalOptions="FillAndExpand"
+                SelectedItem="{Binding SelectedStatus}"
+                TextColor="#1E3A8A"
+                VerticalOptions="Center">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Pending</x:String>
+                        <x:String>Approved</x:String>
+                        <x:String>Declined</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
 
-            <!-- Appointment List -->
-            <CollectionView x:Name="AppointmentList" 
-                            ItemsSource="{Binding Appointment}">
+            </Picker>-->
+
+
+
+            <!--  Appointment List  -->
+            <CollectionView x:Name="AppointmentList" ItemsSource="{Binding Appointment}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <SwipeView>
 
-                            <!-- Swipe Left - Decline -->
+                            <!--  Swipe Left - Decline  -->
                             <SwipeView.LeftItems>
-                                <SwipeItem BackgroundColor="Red" 
-                                           Text="Decline" 
-                                           Command="{Binding BindingContext.OnDeclineCommand, Source={x:Reference AppointmentList}}"
-                                           CommandParameter="{Binding .}"/>
+                                <SwipeItem
+                                    BackgroundColor="Red"
+                                    Command="{Binding BindingContext.OnDeclineCommand, Source={x:Reference AppointmentList}}"
+                                    CommandParameter="{Binding .}"
+                                    Text="Decline" />
                             </SwipeView.LeftItems>
 
-                            <!-- Swipe Right - Approve -->
+                            <!--  Swipe Right - Approve  -->
                             <SwipeView.RightItems>
-                                <SwipeItem BackgroundColor="Green"
-                                           Text="Approve" 
-                                           Command="{Binding BindingContext.OnApproveCommand, Source={x:Reference AppointmentList}}"
-                                           CommandParameter="{Binding .}"/>
+                                <SwipeItem
+                                    BackgroundColor="Green"
+                                    Command="{Binding BindingContext.OnApproveCommand, Source={x:Reference AppointmentList}}"
+                                    CommandParameter="{Binding .}"
+                                    Text="Approve" />
                             </SwipeView.RightItems>
 
-                            <!-- Content of Appointment -->
-                            <StackLayout Padding="10" 
-                                         Spacing="5"
-                                         Orientation="Horizontal"
-                                         HorizontalOptions="FillAndExpand">
+                            <!--  Content of Appointment  -->
+                            <StackLayout
+                                Padding="10"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="5">
 
-                                <Label Text="{Binding LicensePlate}" 
-                                       VerticalOptions="Center" 
-                                       HorizontalOptions="CenterAndExpand" 
-                                       FontSize="Medium" />
-                                <Label Text="{Binding AppointmentDate}" 
-                                       VerticalOptions="Center" 
-                                       HorizontalOptions="CenterAndExpand" 
-                                       FontSize="Medium" />
+                                <Label
+                                    FontSize="Medium"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="{Binding LicensePlate}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontSize="Medium"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="{Binding AppointmentDate}"
+                                    VerticalOptions="Center" />
                             </StackLayout>
 
                         </SwipeView>
