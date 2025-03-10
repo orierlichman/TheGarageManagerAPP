@@ -7,8 +7,6 @@
     xmlns:viewModels="clr-namespace:TheGarageManagerAPP.ViewModels"
     Title="AppointmentView">
 
-
-
     <ContentPage.Content>
         <StackLayout Padding="10">
 
@@ -24,30 +22,8 @@
                 SelectedItem="{Binding SelectedStatus}"
                 TextColor="#1E3A8A" />
 
-            <!--<Picker
-                x:Name="Status"
-                Title="Select Status"
-                Margin="20,5"
-                BackgroundColor="#E3EAFD"
-                FontSize="16"
-                HorizontalOptions="FillAndExpand"
-                SelectedItem="{Binding SelectedStatus}"
-                TextColor="#1E3A8A"
-                VerticalOptions="Center">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Pending</x:String>
-                        <x:String>Approved</x:String>
-                        <x:String>Declined</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-
-            </Picker>-->
-
-
-
             <!--  Appointment List  -->
-            <CollectionView x:Name="AppointmentList" ItemsSource="{Binding Appointment}">
+            <CollectionView x:Name="AppointmentList" ItemsSource="{Binding Appointment}" >
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -75,19 +51,41 @@
                             <StackLayout
                                 Padding="10"
                                 HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal"
-                                Spacing="5">
+                                Orientation="Vertical"
+                                Spacing="10">
 
-                                <Label
-                                    FontSize="Medium"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Text="{Binding LicensePlate}"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    FontSize="Medium"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Text="{Binding AppointmentDate}"
-                                    VerticalOptions="Center" />
+                                <!-- License Plate Label -->
+                                <StackLayout Orientation="Horizontal" Spacing="5">
+                                    <Label
+                                        FontSize="Medium"
+                                        Text="License Plate:"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        TextColor="#333" />
+                                    <Label
+                                        FontSize="Medium"
+                                        Text="{Binding LicensePlate}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        TextColor="#1E3A8A" />
+                                </StackLayout>
+
+                                <!-- Appointment Date Label -->
+                                <StackLayout Orientation="Horizontal" Spacing="5">
+                                    <Label
+                                        FontSize="Medium"
+                                        Text="Date:"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        TextColor="#333" />
+                                    <Label
+                                        FontSize="Medium"
+                                        Text="{Binding AppointmentDate}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        TextColor="#1E3A8A" />
+                                </StackLayout>
+
                             </StackLayout>
 
                         </SwipeView>
