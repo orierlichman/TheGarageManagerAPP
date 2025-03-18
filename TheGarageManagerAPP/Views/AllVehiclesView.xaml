@@ -19,7 +19,7 @@
                 Margin="0,0,0,10"/>
             <!--<ScrollView>-->
             <!-- ListView להצגת רכבים -->
-                <CollectionView ItemsSource="{Binding GarageVehicle}" Grid.Row="1">
+            <CollectionView ItemsSource="{Binding GarageVehicle}" Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding SelectedVehicle}">
 
                     <!-- תבנית ItemTemplate להצגת כל רכב -->
                     <CollectionView.ItemTemplate>

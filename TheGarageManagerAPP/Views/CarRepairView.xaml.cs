@@ -1,9 +1,12 @@
+using TheGarageManagerAPP.ViewModels;
+
 namespace TheGarageManagerAPP.Views;
 
 public partial class CarRepairView : ContentPage
 {
-	public CarRepairView()
+	public CarRepairView(CarRepairViewModel vm)
 	{
+		this.BindingContext = vm;
 		InitializeComponent();
 	}
 }

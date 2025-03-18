@@ -405,6 +405,49 @@ namespace TheGarageManagerApp.Services
 
 
 
+        public async Task<CarRepairModels?> AddCarRepairAsync(CarRepairModels carRepairModels)
+        {
+            // הגדרת ה-URI של ה-API
+            string url = $"{this.baseUrl}addCarRepair";
+
+            try
+            {
+                // המרת ה-DTO של תיקון הרכב ל-JSON
+                string json = JsonSerializer.Serialize(carRepairModels);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // קריאת ה-API ב-PostAsync
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                // בדיקה אם הקריאה הצליחה
+                if (response.IsSuccessStatusCode)
+                {
+                    // אם הקריאה הצליחה, נקרא את התשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה ל-CarRepairDTO
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    CarRepairModels? result = JsonSerializer.Deserialize<CarRepairModels>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    // במקרה של שגיאה, מחזירים null
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                // במקרה של שגיאה כללית
+                return null;
+            }
+        }
+
+
+
     }
 
 }

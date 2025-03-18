@@ -33,6 +33,7 @@ namespace TheGarageManagerAPP.ViewModels
         }
 
         public ICommand SearchTextChangedCommand { get; }
+     
 
 
         public string SearchText
@@ -53,6 +54,34 @@ namespace TheGarageManagerAPP.ViewModels
             this.serviceProvider = serviceProvider;
             FillAllVehicles();
             SearchTextChangedCommand = new Command(async () => await SearchVehicles(((App)Application.Current).LoggedInUser.UserGarageID));
+            
+
+        }
+
+        private VehicleModels selectedVehicle;
+        public VehicleModels SelectedVehicle
+        {
+            get { return selectedVehicle; }
+            set
+            {
+                selectedVehicle = value;
+                OnPropertyChanged();
+                CarSelected(value);
+            }
+        }
+        private async void CarSelected(VehicleModels v)
+        {
+            if (v != null)
+            {
+                var navParam = new Dictionary<string, object>
+                {
+                    { "TheVehicle", v }
+                };
+                //Navigate to the task details page
+                await Shell.Current.GoToAsync("CarRepair", navParam);
+                SelectedVehicle = null;
+                
+            }
 
         }
 

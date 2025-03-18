@@ -15,10 +15,7 @@
          ContentTemplate="{DataTemplate Views:TheGarageHomaPageView}"
          Route="TheGarageHomaPage" />
 
-        <ShellContent
-         Title="CarRepair" Icon="repairblack.png"
-         ContentTemplate="{DataTemplate Views:CarRepairView}"
-         Route="CarRepair" />
+        
 
         <ShellContent
          Title="AllVehicles" Icon="car.png" 
