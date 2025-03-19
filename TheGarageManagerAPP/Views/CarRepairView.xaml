@@ -1,12 +1,72 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
              x:Class="TheGarageManagerAPP.Views.CarRepairView"
+             x:DataType="viewmodels:CarRepairViewModel"
              Title="CarRepairView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid>
+
+        <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
+
+            <!-- Description -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Description" Grid.Column="0" Style="{StaticResource labelDescriptionStyle}" />
+                <Label Text="{Binding DescriptionError}" IsVisible="{Binding ShowDescriptionError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+            </Grid>
+            <Entry Placeholder="Type Description" Text="{Binding Description}" Style="{StaticResource entryStyle}" />
+
+
+            <!-- Cost -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Cost" Grid.Column="0" Style="{StaticResource labelCostStyle}" />
+                <Label Text="{Binding CostError}" IsVisible="{Binding ShowCostError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+            </Grid>
+            <Entry Placeholder="Cost: " Text="{Binding Cost}" Style="{StaticResource entryStyle}" />
+
+
+            <!-- Date -->
+            
+            <!-- לא עובד cost -->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Date" Grid.Column="0" Style="{StaticResource labelDateStyle}" />
+                <Label Text="{Binding DateError}" IsVisible="{Binding ShowDateError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+            </Grid>
+            <DatePicker Date="{Binding }"  Style="{StaticResource entryStyle}"></DatePicker>
+
+            
+            
+            
+            <!-- Save Buttons -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" BackgroundColor="Green" Margin="5" />
+            </Grid>
+        </VerticalStackLayout>
+        <!-- Centered ActivityIndicator -->
+        <ActivityIndicator IsRunning="{Binding InServerCall}" 
+           Color="Red" 
+           VerticalOptions="Center" 
+           HorizontalOptions="Center" />
+
+
+    </Grid>
+
 </ContentPage>
