@@ -2,20 +2,73 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheGarageManagerAPP.Views.TheGarageHomaPageView"
-             Title="TheGarageHomaPageView">
-    <VerticalStackLayout>
+             Title="TheGarageHomaPageView"
+             BackgroundColor="#f5f5f5">
+    <!-- צבע רקע בהיר -->
+
+    <VerticalStackLayout Spacing="15" Padding="20">
+
+        <!-- כותרת -->
         <Label 
-            Text="Welcome to the GARAGE "
+            Text="Welcome to the GARAGE"
             VerticalOptions="Center"           
             HorizontalOptions="Center"
-            FontSize="Large"/>
+            FontSize="32"
+            FontAttributes="Bold"
+            TextColor="#2c3e50" />
+        <!-- צבע טקסט כהה -->
 
-        <Button Text="Parts" Command="{Binding PartsCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
-        <Button Text="AllVehicles" Command="{Binding AllVehiclesCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
-        <Button Text="Profile" Command="{Binding ProfileCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
-        <Button Text="Appointment" Command="{Binding AppointmentCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
-        <Button Text="CarRepair" Command="{Binding CarRepairCommand}" IsEnabled="{Binding NotInServerCall}"  Style="{StaticResource buttonStyle}" BackgroundColor="Blue" Margin="5" />
+        <!-- כפתור Parts -->
+        <Button Text="Parts"
+                Command="{Binding PartsCommand}" 
+                IsEnabled="{Binding NotInServerCall}"  
+                Style="{StaticResource buttonStyle}" 
+                BackgroundColor="#3498db" 
+                TextColor="White"
+                Margin="5"
+                CornerRadius="10"
+                HeightRequest="50"
+                BorderColor="#2980b9"
+                BorderWidth="1"/>
 
+            <!-- כפתור AllVehicles -->
+            <Button Text="AllVehicles"
+                Command="{Binding AllVehiclesCommand}" 
+                IsEnabled="{Binding NotInServerCall}"  
+                Style="{StaticResource buttonStyle}" 
+                BackgroundColor="#e67e22"
+                TextColor="White"
+                Margin="5"
+                CornerRadius="10"
+                HeightRequest="50"
+                BorderColor="#d35400"
+                BorderWidth="1"/>
+
+                <!-- כפתור Profile -->
+                <Button Text="Profile"
+                Command="{Binding ProfileCommand}" 
+                IsEnabled="{Binding NotInServerCall}"  
+                Style="{StaticResource buttonStyle}" 
+                BackgroundColor="#2ecc71"
+                TextColor="White"
+                Margin="5"
+                CornerRadius="10"
+                HeightRequest="50"
+                BorderColor="#27ae60"
+                BorderWidth="1"/>
+
+                    <!-- כפתור Appointment -->
+                    <Button Text="Appointment"
+                Command="{Binding AppointmentCommand}" 
+                IsEnabled="{Binding NotInServerCall}"  
+                Style="{StaticResource buttonStyle}" 
+                BackgroundColor="#f39c12" 
+                TextColor="White"
+                Margin="5"
+                CornerRadius="10"
+                HeightRequest="50"
+                BorderColor="#e67e22"
+                BorderWidth="1"/>
 
     </VerticalStackLayout>
 </ContentPage>

@@ -57,14 +57,14 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" BackgroundColor="Green" Margin="5" />
+                <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" BackgroundColor="Green" Margin="5" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Grid>
         </VerticalStackLayout>
-        <!-- Centered ActivityIndicator -->
+        <!-- Centered ActivityIndicator --><!--
         <ActivityIndicator IsRunning="{Binding InServerCall}" 
            Color="Red" 
            VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+           HorizontalOptions="Center" />-->
 
 
     </Grid>
