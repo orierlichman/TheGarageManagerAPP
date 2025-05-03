@@ -20,9 +20,9 @@ namespace TheGarageManagerApp.Services
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
-            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5110/api/" : $"http://{serverIP}:5110/api/";
+            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5055/api/" : $"http://{serverIP}:5055/api/";
         private static string ImageBaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
-            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5110" : $"http://{serverIP}:5110";
+            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5055" : $"http://{serverIP}:5055";
         */
         #endregion
 
@@ -445,6 +445,44 @@ namespace TheGarageManagerApp.Services
                 return null;
             }
         }
+
+
+
+
+
+        public async Task<List<AppointmentModels>?> GetAppointmentsByStatusAsync(int garageId)
+        {
+            string url = $"{this.baseUrl}getAppointmentsByStatus";
+            try
+            {
+                string json = JsonSerializer.Serialize(garageId);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    // Deserialize into your custom model (AppointmentModels)
+                    List<AppointmentModels>? result = JsonSerializer.Deserialize<List<AppointmentModels>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
 
 
