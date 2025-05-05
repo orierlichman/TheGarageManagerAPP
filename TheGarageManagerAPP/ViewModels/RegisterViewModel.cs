@@ -19,6 +19,7 @@ namespace TheGarageManagerAPP.ViewModels
             ShowPasswordCommand = new Command(OnShowPassword);
             IsPassword = true;
             NameError = "Name is required";
+            RashamHavarotError = "RashamHavarot is required";
             LastNameError = "Last name is required";
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
@@ -29,6 +30,49 @@ namespace TheGarageManagerAPP.ViewModels
 
 
         //Defiine properties for each field in the registration form including error messages and validation logic
+        #region RashamHavarot
+        private bool showRashamHavarotError;
+
+        public bool ShowRashamHavarotError
+        {
+            get => showRashamHavarotError;
+            set
+            {
+                showRashamHavarotError = value;
+                OnPropertyChanged("ShowRashamHavarotError");
+            }
+        }
+
+        private string rashamHavarot;
+
+        public string RashamHavarot
+        {
+            get => rashamHavarot;
+            set
+            {
+                rashamHavarot = value;
+                ValidateRashamHavarot();
+                OnPropertyChanged("RashamHavarot");
+            }
+        }
+
+        private string rashamHavarotError;
+
+        public string RashamHavarotError
+        {
+            get => rashamHavarotError;
+            set
+            {
+                rashamHavarotError = value;
+                OnPropertyChanged("RashamHavarotError");
+            }
+        }
+
+        private void ValidateRashamHavarot()
+        {
+            this.ShowRashamHavarotError = string.IsNullOrEmpty(RashamHavarot);
+        }
+        #endregion
         #region Name
         private bool showNameError;
 
@@ -293,8 +337,9 @@ namespace TheGarageManagerAPP.ViewModels
             ValidateLastName();
             ValidateEmail();
             ValidatePassword();
+            ValidateRashamHavarot();    
 
-            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError)
+            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowRashamHavarotError)
             {
                 //Create a new AppUser object with the data from the registration form
                 var newUser = new UserModels
@@ -310,7 +355,8 @@ namespace TheGarageManagerAPP.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                newUser = await proxy.Register(newUser);
+
+                newUser = await proxy.Register(newUser, RashamHavarot);
                 InServerCall = false;
 
                 //If the registration was successful, navigate to the login page

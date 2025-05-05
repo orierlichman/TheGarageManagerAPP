@@ -81,5 +81,43 @@ namespace TasksManagementApp.Services
 
 
 
+
+        public async Task<List<AppointmentModels>?> GetAppointmentsByStatusAsync(int garageId)
+        {
+            string url = $"{this.baseUrl}getAppointmentsByStatus";
+            try
+            {
+                string json = JsonSerializer.Serialize(garageId);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    // Deserialize into your custom model (AppointmentModels)
+                    List<AppointmentModels>? result = JsonSerializer.Deserialize<List<AppointmentModels>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+
+
+
+
     }
 }

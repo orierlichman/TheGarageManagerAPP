@@ -96,10 +96,10 @@ namespace TheGarageManagerApp.Services
 
         //This methos call the Register web API on the server and return the AppUser object with the given ID
         //or null if the call fails
-        public async Task<UserModels?> Register(UserModels user)
+        public async Task<UserModels?> Register(UserModels user, string rashamHavarot)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}register";
+            string url = $"{this.baseUrl}register?rashamHavarot={rashamHavarot}";
             try
             {
                 //Call the server API
