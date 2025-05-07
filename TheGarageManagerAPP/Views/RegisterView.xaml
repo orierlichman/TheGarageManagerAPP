@@ -4,98 +4,262 @@
              xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
              x:Class="TheGarageManagerAPP.Views.RegisterView"
              x:DataType="viewmodels:RegisterViewModel"
-             Title="RegisterView">
+             BackgroundColor="#F0F4F8"
+      re        Title="הרשמה">
+
+    <!-- App resources -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Greek-inspired modern color palette -->
+            <Color x:Key="GreekBlue">#1A5276</Color>
+            <Color x:Key="GreekLightBlue">#85C1E9</Color>
+            <Color x:Key="GreekWhite">#F7F9FB</Color>
+            <Color x:Key="GreekGold">#D4AC0D</Color>
+            <Color x:Key="GreekDarkGrey">#34495E</Color>
+
+            <!-- Greek-inspired border style -->
+            <Style x:Key="greekBorderStyle" TargetType="Border">
+                <Setter Property="Stroke" Value="{StaticResource GreekBlue}" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 10,10,10,10" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Background" Value="{StaticResource GreekWhite}" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0,5,0,15" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow Brush="#77000000"
+                               Offset="0,2"
+                               Radius="4" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Greek-inspired entry style -->
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource GreekDarkGrey}" />
+                <Setter Property="PlaceholderColor" Value="#A0AEC0" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="10,0" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <!-- Greek-inspired label style -->
+            <Style x:Key="labelNameStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource GreekBlue}" />
+                <Setter Property="FontFamily" Value="OpenSansSemiBold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <!-- Error label style -->
+            <Style x:Key="labelErrorStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#E74C3C" />
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,0,5,0" />
+            </Style>
+
+            <!-- Button style with Greek meander pattern inspiration -->
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="OpenSansBold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="15,10" />
+                <Setter Property="MinimumHeightRequest" Value="50" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow Brush="#77000000"
+                               Offset="0,3"
+                               Radius="6" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid>
+        <!-- Greek Key Pattern Header -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <!-- Greek Key Pattern Header -->
+        <Image Source="greek_header.png" 
+               Aspect="AspectFill" 
+               HeightRequest="60" 
+               Grid.Row="0" />
 
-        <!-- Main Content -->
-        <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
+        <ScrollView Grid.Row="1">
+            <!-- Main Content with Greek-inspired card design -->
+            <Border Margin="20" 
+                   StrokeShape="RoundRectangle 20,20,20,20" 
+                   Background="{StaticResource GreekWhite}" 
+                   Stroke="{StaticResource GreekLightBlue}" 
+                   StrokeThickness="1"
+                   Padding="15">
+                <Border.Shadow>
+                    <Shadow Brush="#30000000"
+                           Offset="0,4"
+                           Radius="12" />
+                </Border.Shadow>
 
-            <!-- First Name -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="First Name" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-            </Grid>
-            <Entry Placeholder="Type First Name" Text="{Binding Name}" Style="{StaticResource entryStyle}" />
+                <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Spacing="10">
+                    <!-- Title with Greek-inspired design -->
+                    <Label Text="רישום למערכת" 
+                           FontSize="28" 
+                           FontFamily="OpenSansBold" 
+                           TextColor="{StaticResource GreekBlue}" 
+                           HorizontalOptions="Center" 
+                           Margin="0,0,0,20" />
 
-            <!-- Last Name -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="Last Name" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-            </Grid>
-            <Entry Placeholder="Type Last Name" Text="{Binding LastName}" Style="{StaticResource entryStyle}" />
+                    <!-- Garage ID Field -->
+                    <Label Text="מספר מוסך" Style="{StaticResource labelNameStyle}" />
+                    <Grid>
+                        <Border Style="{StaticResource greekBorderStyle}">
+                            <Entry Placeholder="הכנס מספר מוסך" 
+                                  Text="{Binding RashamHavarot}" 
+                                  Style="{StaticResource entryStyle}" />
+                        </Border>
+                        <Label Text="{Binding RashamHavarotError}" 
+                              IsVisible="{Binding ShowRashamHavarotError}" 
+                              Style="{StaticResource labelErrorStyle}" 
+                              VerticalOptions="Start" 
+                              Margin="5,45,5,0" />
+                    </Grid>
 
-            <!-- Email -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="Email" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-            </Grid>
-            <Entry Placeholder="Type Email" Text="{Binding Email}" Style="{StaticResource entryStyle}" />
+                    <!-- First Name Field -->
+                    <Label Text="שם פרטי" Style="{StaticResource labelNameStyle}" />
+                    <Grid>
+                        <Border Style="{StaticResource greekBorderStyle}">
+                            <Entry Placeholder="הכנס שם פרטי" 
+                                  Text="{Binding Name}" 
+                                  Style="{StaticResource entryStyle}" />
+                        </Border>
+                        <Label Text="{Binding NameError}" 
+                              IsVisible="{Binding ShowNameError}" 
+                              Style="{StaticResource labelErrorStyle}" 
+                              VerticalOptions="Start" 
+                              Margin="5,45,5,0" />
+                    </Grid>
 
-            <!-- Password -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="Password" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                </Grid.ColumnDefinitions>
-                <Entry Grid.Column="0" Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}" Style="{StaticResource entryStyle}" />
-                <ImageButton Grid.Column="1" HeightRequest="25" Source="passwordeye.jpg" Command="{Binding ShowPasswordCommand}" />
-            </Grid>
+                    <!-- Last Name Field -->
+                    <Label Text="שם משפחה" Style="{StaticResource labelNameStyle}" />
+                    <Grid>
+                        <Border Style="{StaticResource greekBorderStyle}">
+                            <Entry Placeholder="הכנס שם משפחה" 
+                                  Text="{Binding LastName}" 
+                                  Style="{StaticResource entryStyle}" />
+                        </Border>
+                        <Label Text="{Binding LastNameError}" 
+                              IsVisible="{Binding ShowLastNameError}" 
+                              Style="{StaticResource labelErrorStyle}" 
+                              VerticalOptions="Start" 
+                              Margin="5,45,5,0" />
+                    </Grid>
 
+                    <!-- Email Field -->
+                    <Label Text="דואר אלקטרוני" Style="{StaticResource labelNameStyle}" />
+                    <Grid>
+                        <Border Style="{StaticResource greekBorderStyle}">
+                            <Entry Placeholder="הכנס דואר אלקטרוני" 
+                                  Text="{Binding Email}" 
+                                  Style="{StaticResource entryStyle}" />
+                        </Border>
+                        <Label Text="{Binding EmailError}" 
+                              IsVisible="{Binding ShowEmailError}" 
+                              Style="{StaticResource labelErrorStyle}" 
+                              VerticalOptions="Start" 
+                              Margin="5,45,5,0" />
+                    </Grid>
 
-            <!-- UserStatusID -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="select your type user" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                <Picker x:Name="picker"                   
-        Title="select your type user" ItemsSource="{Binding StatusModels}" SelectedItem="{Binding SelectedStatus}" ItemDisplayBinding="{Binding StatusName}" Margin="10">
-                </Picker>
+                    <!-- Password Field -->
+                    <Label Text="סיסמה" Style="{StaticResource labelNameStyle}" />
+                    <Grid>
+                        <Border Style="{StaticResource greekBorderStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <Entry Grid.Column="0" 
+                                      Placeholder="הכנס סיסמה" 
+                                      Text="{Binding Password}" 
+                                      IsPassword="{Binding IsPassword}" 
+                                      Style="{StaticResource entryStyle}" />
+                                <ImageButton Grid.Column="1" 
+                                           HeightRequest="25" 
+                                           Source="passwordeye.jpg" 
+                                           Command="{Binding ShowPasswordCommand}" 
+                                           BackgroundColor="Transparent" 
+                                           Margin="0,0,10,0" />
+                            </Grid>
+                        </Border>
+                        <Label Text="{Binding PasswordError}" 
+                              IsVisible="{Binding ShowPasswordError}" 
+                              Style="{StaticResource labelErrorStyle}" 
+                              VerticalOptions="Start" 
+                              Margin="5,45,5,0" />
+                    </Grid>
 
-            </Grid>
+                    <!-- User Type Selection -->
+                    <Label Text="בחר סוג משתמש" Style="{StaticResource labelNameStyle}" />
+                    <Border Style="{StaticResource greekBorderStyle}" HeightRequest="60">
+                        <Picker x:Name="picker"
+                              Title="בחר סוג משתמש" 
+                              ItemsSource="{Binding StatusModels}" 
+                              SelectedItem="{Binding SelectedStatus}" 
+                              ItemDisplayBinding="{Binding StatusName}" 
+                              TextColor="{StaticResource GreekDarkGrey}"
+                              BackgroundColor="Transparent"
+                              FontFamily="OpenSansRegular"
+                              FontSize="16"
+                              Margin="10,0" />
+                    </Border>
 
-            <!--<Picker x:Name="picker"                   
-        Title="select your type user" ItemsSource="{Binding StatusModels}" SelectedItem="{Binding SelectedStatus}" ItemDisplayBinding="{Binding StatusName}">
-            </Picker>-->
+                    <!-- Greek meander pattern as divider -->
+                    <Image Source="greek_pattern.png" 
+                         HeightRequest="20" 
+                         Aspect="AspectFit"
+                         Margin="0,15" />
 
+                    <!-- Buttons with Greek inspired color scheme -->
+                    <Grid Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Text="ביטול" 
+                              Command="{Binding CancelCommand}" 
+                              IsEnabled="{Binding NotInServerCall}" 
+                              Grid.Column="0" 
+                              Style="{StaticResource buttonStyle}"  
+                              BackgroundColor="{StaticResource GreekDarkGrey}" 
+                              Margin="5" />
+                        <Button Text="הרשמה" 
+                              Command="{Binding RegisterCommand}" 
+                              IsEnabled="{Binding NotInServerCall}" 
+                              Grid.Column="1" 
+                              Style="{StaticResource buttonStyle}" 
+                              BackgroundColor="{StaticResource GreekBlue}" 
+                              Margin="5" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </ScrollView>
 
-
-            <!-- Register and Cancel Buttons -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="Register" Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" BackgroundColor="Green" Margin="5" />
-                <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"  BackgroundColor="Red" Margin="5" />
-            </Grid>
-        </VerticalStackLayout>
-        <!-- Centered ActivityIndicator -->
+        <!-- Centered ActivityIndicator with Greek-inspired color -->
         <ActivityIndicator IsRunning="{Binding InServerCall}" 
-                   Color="Red" 
-                   VerticalOptions="Center" 
-                   HorizontalOptions="Center" />
+                         Color="{StaticResource GreekGold}" 
+                         Scale="2"
+                         VerticalOptions="Center" 
+                         HorizontalOptions="Center" 
+                         Grid.RowSpan="2" />
     </Grid>
 </ContentPage>
