@@ -5,7 +5,7 @@
              x:Class="TheGarageManagerAPP.Views.RegisterView"
              x:DataType="viewmodels:RegisterViewModel"
              BackgroundColor="#F0F4F8"
-      re        Title="הרשמה">
+             Title="הרשמה">
 
     <!-- App resources -->
     <ContentPage.Resources>

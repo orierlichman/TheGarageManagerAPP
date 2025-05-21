@@ -9,4 +9,9 @@ public partial class RegisterView : ContentPage
         this.BindingContext = vm;
         InitializeComponent();
     }
+
+    private void InitializeComponent()
+    {
+        throw new NotImplementedException();
+    }
 }

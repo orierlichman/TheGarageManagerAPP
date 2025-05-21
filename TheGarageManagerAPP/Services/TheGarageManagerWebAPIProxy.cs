@@ -485,6 +485,47 @@ namespace TheGarageManagerApp.Services
 
 
 
+        public async Task<bool> TransferPendingAppointmentsAsync()
+        {
+            try
+            {
+                // 1. כתובת לשרת אפליקציה 2 שמחזיר את התורים עם סטטוס Pending
+                string urlApp2 = $"{this.baseUrl}getPendingAppointments"; 
+
+                HttpResponseMessage responseApp2 = await client.GetAsync(urlApp2);
+                if (!responseApp2.IsSuccessStatusCode)
+                    return false;
+
+                string jsonAppointments = await responseApp2.Content.ReadAsStringAsync();
+
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                List<AppointmentModels>? pendingAppointments =
+                    JsonSerializer.Deserialize<List<AppointmentModels>>(jsonAppointments, options);
+
+                if (pendingAppointments == null || pendingAppointments.Count == 0)
+                    return false;
+
+                // 2. כתובת לשרת אפליקציה 1 שמכניס את התורים (insertAppointments)
+                string urlApp1 = $"{this.baseUrl}insertAppointments";
+
+                string jsonToSend = JsonSerializer.Serialize(pendingAppointments);
+                StringContent content = new StringContent(jsonToSend, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage responseApp1 = await client.PostAsync(urlApp1, content);
+                return responseApp1.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                // ניתן לרשום ל-log או לטפל בשגיאה אחרת
+                return false;
+            }
+        }
+
+
 
     }
 
