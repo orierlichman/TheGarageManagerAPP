@@ -10,8 +10,4 @@ public partial class RegisterView : ContentPage
         InitializeComponent();
     }
 
-    private void InitializeComponent()
-    {
-        throw new NotImplementedException();
-    }
 }
