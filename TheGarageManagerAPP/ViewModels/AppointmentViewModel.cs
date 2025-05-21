@@ -22,6 +22,7 @@ namespace TheGarageManagerAPP.ViewModels
             InServerCall = false;
             OnApproveCommand = new Command<AppointmentModels>(OnApprove);
             OnDeclineCommand = new Command<AppointmentModels>(OnDecline);
+            TransferAppointmentsCommand = new Command(async () => await TransferAppointments());
             Appointment = new ObservableCollection<AppointmentModels>();
             InitData();
         }
@@ -44,6 +45,31 @@ namespace TheGarageManagerAPP.ViewModels
         public Command OnApproveCommand { get; set; }
         public Command OnDeclineCommand { get; set; }
 
+        public Command TransferAppointmentsCommand { get; set; }
+
+
+        private async Task TransferAppointments()
+        {
+            InServerCall = true;
+
+            // קריאה לשירות שמעביר את התורים
+            bool success = await proxy.TransferPendingAppointmentsAsync();
+
+            if (success)
+            {
+                // טען מחדש את התורים למסך
+                List<AppointmentModels>? list = await this.proxy.GetAppointmentsAsync();
+                if (list != null)
+                    allAppointments = list;
+                else
+                    allAppointments = new List<AppointmentModels>();
+
+                OnStatusChange(); // כדי לסנן לפי סטטוס נבחר
+            }
+
+            InServerCall = false;
+        }
+
         private async void OnApprove(AppointmentModels appointment)
         {
             appointment.AppointmentStatusId = 1;
@@ -57,6 +83,7 @@ namespace TheGarageManagerAPP.ViewModels
             await proxy.UpdateAppointmentStatusAsync(appointment);
             OnStatusChange();
         }
+
 
         private void OnStatusChange()
         {
