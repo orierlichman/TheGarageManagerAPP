@@ -4,262 +4,277 @@
              xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
              x:Class="TheGarageManagerAPP.Views.RegisterView"
              x:DataType="viewmodels:RegisterViewModel"
-             BackgroundColor="#F0F4F8"
+             BackgroundColor="#1a1a1a"
              Title="הרשמה">
 
     <!-- App resources -->
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!-- Greek-inspired modern color palette -->
-            <Color x:Key="GreekBlue">#1A5276</Color>
-            <Color x:Key="GreekLightBlue">#85C1E9</Color>
-            <Color x:Key="GreekWhite">#F7F9FB</Color>
-            <Color x:Key="GreekGold">#D4AC0D</Color>
-            <Color x:Key="GreekDarkGrey">#34495E</Color>
+            <!-- Garage-inspired modern color palette -->
+            <Color x:Key="GaragePrimary">#ff6b35</Color>
+            <Color x:Key="GarageDark">#1a1a1a</Color>
+            <Color x:Key="GarageSecondary">#2c2c2c</Color>
+            <Color x:Key="GarageLight">#34495e</Color>
+            <Color x:Key="GarageText">#ecf0f1</Color>
+            <Color x:Key="GarageError">#e74c3c</Color>
+            <Color x:Key="GaragePlaceholder">#7f8c8d</Color>
 
-            <!-- Greek-inspired border style -->
-            <Style x:Key="greekBorderStyle" TargetType="Border">
-                <Setter Property="Stroke" Value="{StaticResource GreekBlue}" />
-                <Setter Property="StrokeShape" Value="RoundRectangle 10,10,10,10" />
-                <Setter Property="StrokeThickness" Value="1" />
-                <Setter Property="Background" Value="{StaticResource GreekWhite}" />
-                <Setter Property="Padding" Value="0" />
+            <!-- Garage-inspired entry container style -->
+            <Style x:Key="garageFieldContainer" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource GarageSecondary}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Padding" Value="15,10" />
                 <Setter Property="Margin" Value="0,5,0,15" />
-                <Setter Property="Shadow">
-                    <Setter.Value>
-                        <Shadow Brush="#77000000"
-                               Offset="0,2"
-                               Radius="4" />
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="BorderColor" Value="{StaticResource GaragePrimary}" />
             </Style>
 
-            <!-- Greek-inspired entry style -->
+            <!-- Garage-inspired entry style -->
             <Style x:Key="entryStyle" TargetType="Entry">
-                <Setter Property="TextColor" Value="{StaticResource GreekDarkGrey}" />
-                <Setter Property="PlaceholderColor" Value="#A0AEC0" />
+                <Setter Property="TextColor" Value="{StaticResource GarageText}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource GaragePlaceholder}" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="FontFamily" Value="OpenSansRegular" />
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="Margin" Value="10,0" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
-            <!-- Greek-inspired label style -->
+            <!-- Garage-inspired label style -->
             <Style x:Key="labelNameStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource GreekBlue}" />
+                <Setter Property="TextColor" Value="{StaticResource GaragePrimary}" />
                 <Setter Property="FontFamily" Value="OpenSansSemiBold" />
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="Margin" Value="5,0,0,5" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
             <!-- Error label style -->
             <Style x:Key="labelErrorStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="#E74C3C" />
+                <Setter Property="TextColor" Value="{StaticResource GarageError}" />
                 <Setter Property="FontFamily" Value="OpenSansRegular" />
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Margin" Value="0,0,5,0" />
+                <Setter Property="Margin" Value="5,0,5,0" />
             </Style>
 
-            <!-- Button style with Greek meander pattern inspiration -->
+            <!-- Button style with garage theme -->
             <Style x:Key="buttonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="FontFamily" Value="OpenSansBold" />
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="Padding" Value="15,10" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="Padding" Value="15,12" />
                 <Setter Property="MinimumHeightRequest" Value="50" />
-                <Setter Property="Shadow">
-                    <Setter.Value>
-                        <Shadow Brush="#77000000"
-                               Offset="0,3"
-                               Radius="6" />
-                    </Setter.Value>
-                </Setter>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <Grid>
-        <!-- Greek Key Pattern Header -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <!-- Background with gradient -->
+        <BoxView>
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#1a1a1a" Offset="0.0" />
+                    <GradientStop Color="#2c2c2c" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
 
-        <!-- Greek Key Pattern Header -->
-        <Image Source="greek_header.png" 
-               Aspect="AspectFill" 
-               HeightRequest="60" 
-               Grid.Row="0" />
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Padding="25,40,25,25">
 
-        <ScrollView Grid.Row="1">
-            <!-- Main Content with Greek-inspired card design -->
-            <Border Margin="20" 
-                   StrokeShape="RoundRectangle 20,20,20,20" 
-                   Background="{StaticResource GreekWhite}" 
-                   Stroke="{StaticResource GreekLightBlue}" 
-                   StrokeThickness="1"
-                   Padding="15">
-                <Border.Shadow>
-                    <Shadow Brush="#30000000"
-                           Offset="0,4"
-                           Radius="12" />
-                </Border.Shadow>
+                <!-- Header Section -->
+                <StackLayout Spacing="15">
+                    <!-- Garage Icon -->
+                    <Frame BackgroundColor="#ff6b35" 
+                           CornerRadius="35" 
+                           WidthRequest="70" 
+                           HeightRequest="70"
+                           HorizontalOptions="Center"
+                           HasShadow="True"
+                           Padding="15">
+                        <Label Text="🏭" 
+                               FontSize="30" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"/>
+                    </Frame>
 
-                <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Spacing="10">
-                    <!-- Title with Greek-inspired design -->
-                    <Label Text="רישום למערכת" 
-                           FontSize="28" 
-                           FontFamily="OpenSansBold" 
-                           TextColor="{StaticResource GreekBlue}" 
-                           HorizontalOptions="Center" 
-                           Margin="0,0,0,20" />
+                    <!-- Title -->
+                    <Label Text="הרשמה למערכת"
+                           HorizontalOptions="Center"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           TextColor="#ff6b35"/>
 
-                    <!-- Garage ID Field -->
-                    <Label Text="מספר מוסך" Style="{StaticResource labelNameStyle}" />
-                    <Grid>
-                        <Border Style="{StaticResource greekBorderStyle}">
-                            <Entry Placeholder="הכנס מספר מוסך" 
-                                  Text="{Binding RashamHavarot}" 
-                                  Style="{StaticResource entryStyle}" />
-                        </Border>
-                        <Label Text="{Binding RashamHavarotError}" 
-                              IsVisible="{Binding ShowRashamHavarotError}" 
-                              Style="{StaticResource labelErrorStyle}" 
-                              VerticalOptions="Start" 
-                              Margin="5,45,5,0" />
-                    </Grid>
+                    <!-- Subtitle -->
+                    <Label Text="הצטרף למערכת ניהול המוסך"
+                           HorizontalOptions="Center"
+                           FontSize="16"
+                           TextColor="#b0b0b0"
+                           FontAttributes="Italic"/>
+                </StackLayout>
 
-                    <!-- First Name Field -->
-                    <Label Text="שם פרטי" Style="{StaticResource labelNameStyle}" />
-                    <Grid>
-                        <Border Style="{StaticResource greekBorderStyle}">
-                            <Entry Placeholder="הכנס שם פרטי" 
-                                  Text="{Binding Name}" 
-                                  Style="{StaticResource entryStyle}" />
-                        </Border>
-                        <Label Text="{Binding NameError}" 
-                              IsVisible="{Binding ShowNameError}" 
-                              Style="{StaticResource labelErrorStyle}" 
-                              VerticalOptions="Start" 
-                              Margin="5,45,5,0" />
-                    </Grid>
+                <!-- Separator Line -->
+                <BoxView BackgroundColor="#ff6b35" 
+                         HeightRequest="2" 
+                         WidthRequest="100" 
+                         HorizontalOptions="Center"
+                         Margin="0,10,0,20"/>
 
-                    <!-- Last Name Field -->
-                    <Label Text="שם משפחה" Style="{StaticResource labelNameStyle}" />
-                    <Grid>
-                        <Border Style="{StaticResource greekBorderStyle}">
-                            <Entry Placeholder="הכנס שם משפחה" 
-                                  Text="{Binding LastName}" 
-                                  Style="{StaticResource entryStyle}" />
-                        </Border>
-                        <Label Text="{Binding LastNameError}" 
-                              IsVisible="{Binding ShowLastNameError}" 
-                              Style="{StaticResource labelErrorStyle}" 
-                              VerticalOptions="Start" 
-                              Margin="5,45,5,0" />
-                    </Grid>
+                <!-- Form Container -->
+                <Frame BackgroundColor="#34495e" 
+                       CornerRadius="20" 
+                       Padding="25"
+                       HasShadow="True"
+                       Margin="0,10,0,0">
 
-                    <!-- Email Field -->
-                    <Label Text="דואר אלקטרוני" Style="{StaticResource labelNameStyle}" />
-                    <Grid>
-                        <Border Style="{StaticResource greekBorderStyle}">
-                            <Entry Placeholder="הכנס דואר אלקטרוני" 
-                                  Text="{Binding Email}" 
-                                  Style="{StaticResource entryStyle}" />
-                        </Border>
-                        <Label Text="{Binding EmailError}" 
-                              IsVisible="{Binding ShowEmailError}" 
-                              Style="{StaticResource labelErrorStyle}" 
-                              VerticalOptions="Start" 
-                              Margin="5,45,5,0" />
-                    </Grid>
+                    <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Spacing="20">
 
-                    <!-- Password Field -->
-                    <Label Text="סיסמה" Style="{StaticResource labelNameStyle}" />
-                    <Grid>
-                        <Border Style="{StaticResource greekBorderStyle}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="40" />
-                                </Grid.ColumnDefinitions>
-                                <Entry Grid.Column="0" 
-                                      Placeholder="הכנס סיסמה" 
-                                      Text="{Binding Password}" 
-                                      IsPassword="{Binding IsPassword}" 
+                        <!-- Garage ID Field -->
+                        <StackLayout>
+                            <Label Text="🏭 מספר מוסך" Style="{StaticResource labelNameStyle}" />
+                            <Frame Style="{StaticResource garageFieldContainer}">
+                                <Entry Placeholder="הכנס מספר מוסך" 
+                                      Text="{Binding RashamHavarot}" 
                                       Style="{StaticResource entryStyle}" />
-                                <ImageButton Grid.Column="1" 
-                                           HeightRequest="25" 
-                                           Source="passwordeye.jpg" 
-                                           Command="{Binding ShowPasswordCommand}" 
-                                           BackgroundColor="Transparent" 
-                                           Margin="0,0,10,0" />
-                            </Grid>
-                        </Border>
-                        <Label Text="{Binding PasswordError}" 
-                              IsVisible="{Binding ShowPasswordError}" 
-                              Style="{StaticResource labelErrorStyle}" 
-                              VerticalOptions="Start" 
-                              Margin="5,45,5,0" />
-                    </Grid>
+                            </Frame>
+                            <Label Text="{Binding RashamHavarotError}" 
+                                  IsVisible="{Binding ShowRashamHavarotError}" 
+                                  Style="{StaticResource labelErrorStyle}" />
+                        </StackLayout>
 
-                    <!-- User Type Selection -->
-                    <Label Text="בחר סוג משתמש" Style="{StaticResource labelNameStyle}" />
-                    <Border Style="{StaticResource greekBorderStyle}" HeightRequest="60">
-                        <Picker x:Name="picker"
-                              Title="בחר סוג משתמש" 
-                              ItemsSource="{Binding StatusModels}" 
-                              SelectedItem="{Binding SelectedStatus}" 
-                              ItemDisplayBinding="{Binding StatusName}" 
-                              TextColor="{StaticResource GreekDarkGrey}"
-                              BackgroundColor="Transparent"
-                              FontFamily="OpenSansRegular"
-                              FontSize="16"
-                              Margin="10,0" />
-                    </Border>
+                        <!-- First Name Field -->
+                        <StackLayout>
+                            <Label Text="👤 שם פרטי" Style="{StaticResource labelNameStyle}" />
+                            <Frame Style="{StaticResource garageFieldContainer}">
+                                <Entry Placeholder="הכנס שם פרטי" 
+                                      Text="{Binding Name}" 
+                                      Style="{StaticResource entryStyle}" />
+                            </Frame>
+                            <Label Text="{Binding NameError}" 
+                                  IsVisible="{Binding ShowNameError}" 
+                                  Style="{StaticResource labelErrorStyle}" />
+                        </StackLayout>
 
-                    <!-- Greek meander pattern as divider -->
-                    <Image Source="greek_pattern.png" 
-                         HeightRequest="20" 
-                         Aspect="AspectFit"
-                         Margin="0,15" />
+                        <!-- Last Name Field -->
+                        <StackLayout>
+                            <Label Text="👥 שם משפחה" Style="{StaticResource labelNameStyle}" />
+                            <Frame Style="{StaticResource garageFieldContainer}">
+                                <Entry Placeholder="הכנס שם משפחה" 
+                                      Text="{Binding LastName}" 
+                                      Style="{StaticResource entryStyle}" />
+                            </Frame>
+                            <Label Text="{Binding LastNameError}" 
+                                  IsVisible="{Binding ShowLastNameError}" 
+                                  Style="{StaticResource labelErrorStyle}" />
+                        </StackLayout>
 
-                    <!-- Buttons with Greek inspired color scheme -->
-                    <Grid Margin="0,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Button Text="ביטול" 
+                        <!-- Email Field -->
+                        <StackLayout>
+                            <Label Text="📧 דואר אלקטרוני" Style="{StaticResource labelNameStyle}" />
+                            <Frame Style="{StaticResource garageFieldContainer}">
+                                <Entry Placeholder="הכנס דואר אלקטרוני" 
+                                      Text="{Binding Email}" 
+                                      Style="{StaticResource entryStyle}" />
+                            </Frame>
+                            <Label Text="{Binding EmailError}" 
+                                  IsVisible="{Binding ShowEmailError}" 
+                                  Style="{StaticResource labelErrorStyle}" />
+                        </StackLayout>
+
+                        <!-- Password Field -->
+                        <StackLayout>
+                            <Label Text="🔐 סיסמה" Style="{StaticResource labelNameStyle}" />
+                            <Frame Style="{StaticResource garageFieldContainer}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+                                    <Entry Grid.Column="0" 
+                                          Placeholder="הכנס סיסמה" 
+                                          Text="{Binding Password}" 
+                                          IsPassword="{Binding IsPassword}" 
+                                          Style="{StaticResource entryStyle}" />
+                                    <ImageButton Grid.Column="1" 
+                                               HeightRequest="25" 
+                                               Source="passwordeye.jpg" 
+                                               Command="{Binding ShowPasswordCommand}" 
+                                               BackgroundColor="Transparent" />
+                                </Grid>
+                            </Frame>
+                            <Label Text="{Binding PasswordError}" 
+                                  IsVisible="{Binding ShowPasswordError}" 
+                                  Style="{StaticResource labelErrorStyle}" />
+                        </StackLayout>
+
+                        <!-- User Type Selection -->
+                        <StackLayout>
+                            <Label Text="⚙️ סוג משתמש" Style="{StaticResource labelNameStyle}" />
+                            <Frame Style="{StaticResource garageFieldContainer}" HeightRequest="60">
+                                <Picker x:Name="picker"
+                                      Title="בחר סוג משתמש" 
+                                      ItemsSource="{Binding StatusModels}" 
+                                      SelectedItem="{Binding SelectedStatus}" 
+                                      ItemDisplayBinding="{Binding StatusName}" 
+                                      TextColor="{StaticResource GarageText}"
+                                      BackgroundColor="Transparent"
+                                      FontFamily="OpenSansRegular"
+                                      FontSize="16" />
+                            </Frame>
+                        </StackLayout>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Action Buttons -->
+                <Grid Margin="0,20,0,0" ColumnSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Grid.Column="0" 
+                           BackgroundColor="#7f8c8d" 
+                           CornerRadius="12" 
+                           HasShadow="True"
+                           Padding="0">
+                        <Button Text="❌ ביטול" 
                               Command="{Binding CancelCommand}" 
                               IsEnabled="{Binding NotInServerCall}" 
-                              Grid.Column="0" 
-                              Style="{StaticResource buttonStyle}"  
-                              BackgroundColor="{StaticResource GreekDarkGrey}" 
-                              Margin="5" />
-                        <Button Text="הרשמה" 
+                              Style="{StaticResource buttonStyle}"
+                              BackgroundColor="Transparent" />
+                    </Frame>
+
+                    <Frame Grid.Column="1" 
+                           BackgroundColor="#ff6b35" 
+                           CornerRadius="12" 
+                           HasShadow="True"
+                           Padding="0">
+                        <Button Text="✅ הרשמה" 
                               Command="{Binding RegisterCommand}" 
                               IsEnabled="{Binding NotInServerCall}" 
-                              Grid.Column="1" 
-                              Style="{StaticResource buttonStyle}" 
-                              BackgroundColor="{StaticResource GreekBlue}" 
-                              Margin="5" />
-                    </Grid>
-                </VerticalStackLayout>
-            </Border>
+                              Style="{StaticResource buttonStyle}"
+                              BackgroundColor="Transparent" />
+                    </Frame>
+                </Grid>
+
+                <!-- Footer -->
+                <Label Text="הרשמה מאובטחת למערכת ניהול המוסך"
+                       HorizontalOptions="Center"
+                       FontSize="14"
+                       TextColor="#7f8c8d"
+                       Margin="0,20,0,0"/>
+
+            </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Centered ActivityIndicator with Greek-inspired color -->
+        <!-- Loading Indicator -->
         <ActivityIndicator IsRunning="{Binding InServerCall}" 
-                         Color="{StaticResource GreekGold}" 
+                         Color="#ff6b35" 
                          Scale="2"
                          VerticalOptions="Center" 
-                         HorizontalOptions="Center" 
-                         Grid.RowSpan="2" />
+                         HorizontalOptions="Center" />
     </Grid>
 </ContentPage>

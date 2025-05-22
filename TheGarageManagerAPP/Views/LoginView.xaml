@@ -6,13 +6,10 @@
              x:DataType="viewmodels:LoginViewModel"
              Title="LoginView">
     <VerticalStackLayout Padding="20" Spacing="15">
-
         <Entry 
         Placeholder="Email"
         Keyboard="Email"
         Text="{Binding Email}" IsEnabled="{Binding NotInServerCall}"/>
-
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -22,21 +19,16 @@
             <!--<Entry Grid.Column="0" Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}" Style="{StaticResource entryStyle}" />-->
             <ImageButton Grid.Column="1" HeightRequest="25" Source="passwordeye.jpg"  Command="{Binding ShowPasswordCommand}" />
         </Grid>
-
-
-
         <Button
         Command="{Binding LoginCommand}"
         IsEnabled="{Binding NotInServerCall}"
         Text="Login" 
         TextColor="Black"
         BackgroundColor="Green"/>
-
         <Label
         HorizontalOptions="Center"
         Text="{Binding ErrorMsg}"
         TextColor="Red" />
-
         <Label
         HorizontalOptions="Center"
         IsEnabled="{Binding NotInServerCall}"
@@ -49,21 +41,242 @@
         </Label>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
     </VerticalStackLayout>
-
-
-    <!--<Button 
-        Text="Login"
-        Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"/>
-        <Label Text="{Binding ErrorMsg}" TextColor="Red" HorizontalOptions="Center"></Label>
-        <Label 
-        Text="Don't have an account? Register"
-        TextColor="Blue"
-        HorizontalOptions="Center"
-        VerticalOptions="End" IsEnabled="{Binding NotInServerCall}">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
-            </Label.GestureRecognizers>
-        </Label>
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
-    </VerticalStackLayout>-->
 </ContentPage>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
+             x:Class="TheGarageManagerAPP.Views.LoginView"
+             x:DataType="viewmodels:LoginViewModel"
+             BackgroundColor="#1a1a1a"
+             Title="כניסה למערכת">
+
+    --><!-- App resources --><!--
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            --><!-- Garage-inspired modern color palette --><!--
+            <Color x:Key="GaragePrimary">#ff6b35</Color>
+            <Color x:Key="GarageDark">#1a1a1a</Color>
+            <Color x:Key="GarageSecondary">#2c2c2c</Color>
+            <Color x:Key="GarageLight">#34495e</Color>
+            <Color x:Key="GarageText">#ecf0f1</Color>
+            <Color x:Key="GarageError">#e74c3c</Color>
+            <Color x:Key="GaragePlaceholder">#7f8c8d</Color>
+            <Color x:Key="GarageSuccess">#27ae60</Color>
+
+            --><!-- Garage-inspired entry container style --><!--
+            <Style x:Key="garageFieldContainer" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource GarageSecondary}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Padding" Value="15,10" />
+                <Setter Property="Margin" Value="0,5,0,15" />
+                <Setter Property="BorderColor" Value="{StaticResource GaragePrimary}" />
+            </Style>
+
+            --><!-- Garage-inspired entry style --><!--
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource GarageText}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource GaragePlaceholder}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            --><!-- Garage-inspired label style --><!--
+            <Style x:Key="labelNameStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource GaragePrimary}" />
+                <Setter Property="FontFamily" Value="OpenSansSemiBold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5,0,0,5" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            --><!-- Button style with garage theme --><!--
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="OpenSansBold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="Padding" Value="15,12" />
+                <Setter Property="MinimumHeightRequest" Value="50" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        --><!-- Background with gradient --><!--
+        <BoxView>
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#1a1a1a" Offset="0.0" />
+                    <GradientStop Color="#2c2c2c" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="25" Padding="25,60,25,25">
+
+                --><!-- Header Section --><!--
+                <StackLayout Spacing="15">
+                    --><!-- Garage Icon --><!--
+                    <Frame BackgroundColor="#ff6b35" 
+                           CornerRadius="40" 
+                           WidthRequest="80" 
+                           HeightRequest="80"
+                           HorizontalOptions="Center"
+                           HasShadow="True"
+                           Padding="18">
+                        <Label Text="🔐" 
+                               FontSize="35" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"/>
+                    </Frame>
+
+                    --><!-- Title --><!--
+                    <Label Text="כניסה למערכת"
+                           HorizontalOptions="Center"
+                           FontSize="36"
+                           FontAttributes="Bold"
+                           TextColor="#ff6b35"/>
+
+                    --><!-- Subtitle --><!--
+                    <Label Text="ברוכים הבאים למערכת ניהול המוסך"
+                           HorizontalOptions="Center"
+                           FontSize="16"
+                           TextColor="#b0b0b0"
+                           FontAttributes="Italic"/>
+                </StackLayout>
+
+                --><!-- Separator Line --><!--
+                <BoxView BackgroundColor="#ff6b35" 
+                         HeightRequest="2" 
+                         WidthRequest="120" 
+                         HorizontalOptions="Center"
+                         Margin="0,10,0,30"/>
+
+                --><!-- Login Form Container --><!--
+                <Frame BackgroundColor="#34495e" 
+                       CornerRadius="20" 
+                       Padding="30"
+                       HasShadow="True"
+                       Margin="0,10,0,0">
+
+                    <VerticalStackLayout Spacing="25">
+
+                        --><!-- Email Field --><!--
+                        <StackLayout>
+                            <Label Text="📧 דואר אלקטרוני" Style="{StaticResource labelNameStyle}" />
+                            <Frame Style="{StaticResource garageFieldContainer}">
+                                <Entry Placeholder="הכנס דואר אלקטרוני" 
+                                      Keyboard="Email"
+                                      Text="{Binding Email}" 
+                                      IsEnabled="{Binding NotInServerCall}"
+                                      Style="{StaticResource entryStyle}" />
+                            </Frame>
+                        </StackLayout>
+
+                        --><!-- Password Field --><!--
+                        <StackLayout>
+                            <Label Text="🔐 סיסמה" Style="{StaticResource labelNameStyle}" />
+                            <Frame Style="{StaticResource garageFieldContainer}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+                                    <Entry Grid.Column="0" 
+                                          Placeholder="הכנס סיסמה" 
+                                          Text="{Binding Password}" 
+                                          IsPassword="{Binding IsPassword}" 
+                                          IsEnabled="{Binding NotInServerCall}"
+                                          Style="{StaticResource entryStyle}" />
+                                    <ImageButton Grid.Column="1" 
+                                               HeightRequest="25" 
+                                               Source="passwordeye.jpg" 
+                                               Command="{Binding ShowPasswordCommand}" 
+                                               BackgroundColor="Transparent" />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+
+                        --><!-- Error Message --><!--
+                        <Label Text="{Binding ErrorMsg}"
+                               TextColor="#e74c3c"
+                               FontSize="14"
+                               HorizontalOptions="Center"
+                               IsVisible="{Binding ErrorMsg, Converter={StaticResource StringToBoolConverter}}"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,0"/>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                --><!-- Login Button --><!--
+                <Frame BackgroundColor="#27ae60" 
+                       CornerRadius="15" 
+                       HasShadow="True"
+                       Padding="0"
+                       Margin="0,20,0,0">
+                    <Button Text="🚪 כניסה למערכת"
+                          Command="{Binding LoginCommand}"
+                          IsEnabled="{Binding NotInServerCall}"
+                          Style="{StaticResource buttonStyle}"
+                          BackgroundColor="Transparent"
+                          HeightRequest="60"
+                          FontSize="18" />
+                </Frame>
+
+                --><!-- Register Link --><!--
+                <Frame BackgroundColor="Transparent" 
+                       BorderColor="#ff6b35"
+                       CornerRadius="12" 
+                       HasShadow="False"
+                       Padding="20,15"
+                       Margin="0,10,0,0">
+                    <Label Text="אין לך חשבון? לחץ כאן להרשמה"
+                           TextColor="#ff6b35"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           IsEnabled="{Binding NotInServerCall}"
+                           HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+
+                --><!-- Security Info --><!--
+                <StackLayout Orientation="Horizontal" 
+                           HorizontalOptions="Center"
+                           Spacing="10"
+                           Margin="0,20,0,0">
+                    <Label Text="🔒" FontSize="16"/>
+                    <Label Text="חיבור מאובטח ומוצפן"
+                           FontSize="14"
+                           TextColor="#7f8c8d"/>
+                </StackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        --><!-- Loading Indicator --><!--
+        <ActivityIndicator IsRunning="{Binding InServerCall}" 
+                         Color="#ff6b35" 
+                         Scale="2.5"
+                         VerticalOptions="Center" 
+                         HorizontalOptions="Center" />
+    </Grid>
+</ContentPage>-->

@@ -5,11 +5,8 @@
              x:Class="TheGarageManagerAPP.Views.CarRepairView"
              x:DataType="viewmodels:CarRepairViewModel"
              Title="CarRepairView">
-
     <Grid>
-
         <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
-
             <!-- Description -->
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -20,8 +17,6 @@
                 <Label Text="{Binding DescriptionError}" IsVisible="{Binding ShowDescriptionError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
             </Grid>
             <Entry Placeholder="Type Description" Text="{Binding Description}" Style="{StaticResource entryStyle}" />
-
-
             <!-- Cost -->
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -32,12 +27,9 @@
                 <Label Text="{Binding CostError}" IsVisible="{Binding ShowCostError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
             </Grid>
             <Entry Placeholder="Cost: " Text="{Binding Cost}" Style="{StaticResource entryStyle}" />
-
-
             <!-- Date -->
-            
-            <!-- לא עובד cost -->
 
+            <!-- לא עובד cost -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -48,9 +40,6 @@
             </Grid>
             <DatePicker Date="{Binding }"  Style="{StaticResource entryStyle}"></DatePicker>
 
-            
-            
-            
             <!-- Save Buttons -->
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -60,13 +49,11 @@
                 <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" BackgroundColor="Green" Margin="5" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Grid>
         </VerticalStackLayout>
-        <!-- Centered ActivityIndicator --><!--
+        <!-- Centered ActivityIndicator -->
+        <!--
         <ActivityIndicator IsRunning="{Binding InServerCall}" 
            Color="Red" 
            VerticalOptions="Center" 
            HorizontalOptions="Center" />-->
-
-
     </Grid>
-
 </ContentPage>

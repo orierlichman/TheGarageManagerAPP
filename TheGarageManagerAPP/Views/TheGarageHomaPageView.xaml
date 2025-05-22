@@ -3,72 +3,193 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheGarageManagerAPP.Views.TheGarageHomaPageView"
              Title="TheGarageHomaPageView"
-             BackgroundColor="#f5f5f5">
-    <!-- צבע רקע בהיר -->
+             BackgroundColor="#1a1a1a">
 
-    <VerticalStackLayout Spacing="15" Padding="20">
+    <ScrollView>
+        <Grid>
+            <!-- רקע עם גרדיאנט -->
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1a1a1a" Offset="0.0" />
+                        <GradientStop Color="#2c2c2c" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
 
-        <!-- כותרת -->
-        <Label 
-            Text="Welcome to the GARAGE"
-            VerticalOptions="Center"           
-            HorizontalOptions="Center"
-            FontSize="32"
-            FontAttributes="Bold"
-            TextColor="#2c3e50" />
-        <!-- צבע טקסט כהה -->
+            <VerticalStackLayout Spacing="25" Padding="20,40,20,20">
 
-        <!-- כפתור Parts -->
-        <Button Text="Parts"
-                Command="{Binding PartsCommand}" 
-                IsEnabled="{Binding NotInServerCall}"  
-                Style="{StaticResource buttonStyle}" 
-                BackgroundColor="#3498db" 
-                TextColor="White"
-                Margin="5"
-                CornerRadius="10"
-                HeightRequest="50"
-                BorderColor="#2980b9"
-                BorderWidth="1"/>
+                <!-- Header Section -->
+                <StackLayout Spacing="10">
+                    <!-- אייקון מוסך -->
+                    <Frame BackgroundColor="#ff6b35" 
+                           CornerRadius="35" 
+                           WidthRequest="70" 
+                           HeightRequest="70"
+                           HorizontalOptions="Center"
+                           HasShadow="True"
+                           Padding="15">
+                        <Label Text="🔧" 
+                               FontSize="30" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"/>
+                    </Frame>
 
-            <!-- כפתור AllVehicles -->
-            <Button Text="AllVehicles"
-                Command="{Binding AllVehiclesCommand}" 
-                IsEnabled="{Binding NotInServerCall}"  
-                Style="{StaticResource buttonStyle}" 
-                BackgroundColor="#e67e22"
-                TextColor="White"
-                Margin="5"
-                CornerRadius="10"
-                HeightRequest="50"
-                BorderColor="#d35400"
-                BorderWidth="1"/>
+                    <!-- כותרת ראשית -->
+                    <Label Text="THE GARAGE"
+                           HorizontalOptions="Center"
+                           FontSize="36"
+                           FontAttributes="Bold"
+                           TextColor="#ff6b35"
+                           Margin="0,10,0,0"/>
 
-                <!-- כפתור Profile -->
-                <Button Text="Profile"
-                Command="{Binding ProfileCommand}" 
-                IsEnabled="{Binding NotInServerCall}"  
-                Style="{StaticResource buttonStyle}" 
-                BackgroundColor="#2ecc71"
-                TextColor="White"
-                Margin="5"
-                CornerRadius="10"
-                HeightRequest="50"
-                BorderColor="#27ae60"
-                BorderWidth="1"/>
+                    <!-- תת כותרת -->
+                    <Label Text="Management System"
+                           HorizontalOptions="Center"
+                           FontSize="16"
+                           TextColor="#b0b0b0"
+                           FontAttributes="Italic"/>
+                </StackLayout>
 
-                    <!-- כפתור Appointment -->
-                    <Button Text="Appointment"
-                Command="{Binding AppointmentCommand}" 
-                IsEnabled="{Binding NotInServerCall}"  
-                Style="{StaticResource buttonStyle}" 
-                BackgroundColor="#f39c12" 
-                TextColor="White"
-                Margin="5"
-                CornerRadius="10"
-                HeightRequest="50"
-                BorderColor="#e67e22"
-                BorderWidth="1"/>
+                <!-- Separator Line -->
+                <BoxView BackgroundColor="#ff6b35" 
+                         HeightRequest="2" 
+                         WidthRequest="100" 
+                         HorizontalOptions="Center"
+                         Margin="0,10,0,20"/>
 
-    </VerticalStackLayout>
+                <!-- Menu Buttons Grid -->
+                <Grid RowDefinitions="Auto,Auto" 
+                      ColumnDefinitions="*,*" 
+                      RowSpacing="15" 
+                      ColumnSpacing="15"
+                      Margin="0,20,0,0">
+
+                    <!-- Parts Button -->
+                    <Frame Grid.Row="0" Grid.Column="0" 
+                           BackgroundColor="#2c3e50" 
+                           CornerRadius="15" 
+                           HasShadow="True"
+                           Padding="0">
+                        <Button Text="🔩 Parts"
+                                Command="{Binding PartsCommand}" 
+                                IsEnabled="{Binding NotInServerCall}"
+                                BackgroundColor="Transparent"
+                                TextColor="#ecf0f1"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                HeightRequest="80"
+                                BorderWidth="0"/>
+                    </Frame>
+
+                    <!-- All Vehicles Button -->
+                    <Frame Grid.Row="0" Grid.Column="1" 
+                           BackgroundColor="#e74c3c" 
+                           CornerRadius="15" 
+                           HasShadow="True"
+                           Padding="0">
+                        <Button Text="🚗 Vehicles"
+                                Command="{Binding AllVehiclesCommand}" 
+                                IsEnabled="{Binding NotInServerCall}"
+                                BackgroundColor="Transparent"
+                                TextColor="White"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                HeightRequest="80"
+                                BorderWidth="0"/>
+                    </Frame>
+
+                    <!-- Profile Button -->
+                    <Frame Grid.Row="1" Grid.Column="0" 
+                           BackgroundColor="#27ae60" 
+                           CornerRadius="15" 
+                           HasShadow="True"
+                           Padding="0">
+                        <Button Text="👤 Profile"
+                                Command="{Binding ProfileCommand}" 
+                                IsEnabled="{Binding NotInServerCall}"
+                                BackgroundColor="Transparent"
+                                TextColor="White"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                HeightRequest="80"
+                                BorderWidth="0"/>
+                    </Frame>
+
+                    <!-- Appointment Button -->
+                    <Frame Grid.Row="1" Grid.Column="1" 
+                           BackgroundColor="#f39c12" 
+                           CornerRadius="15" 
+                           HasShadow="True"
+                           Padding="0">
+                        <Button Text="📅 Appointments"
+                                Command="{Binding AppointmentCommand}" 
+                                IsEnabled="{Binding NotInServerCall}"
+                                BackgroundColor="Transparent"
+                                TextColor="White"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                HeightRequest="80"
+                                BorderWidth="0"/>
+                    </Frame>
+                </Grid>
+
+                <!-- Quick Stats Section -->
+                <Frame BackgroundColor="#34495e" 
+                       CornerRadius="15" 
+                       Padding="20"
+                       HasShadow="True"
+                       Margin="0,30,0,0">
+                    <StackLayout>
+                        <Label Text="Quick Overview" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="#ecf0f1"
+                               HorizontalOptions="Center"/>
+
+                        <Grid ColumnDefinitions="*,*,*" 
+                              RowDefinitions="Auto,Auto" 
+                              ColumnSpacing="10" 
+                              RowSpacing="10"
+                              Margin="0,15,0,0">
+
+                            <StackLayout Grid.Column="0" 
+                                       HorizontalOptions="Center">
+                                <Label Text="🔧" FontSize="24"/>
+                                <Label Text="Services" 
+                                       FontSize="12" 
+                                       TextColor="#bdc3c7"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1" 
+                                       HorizontalOptions="Center">
+                                <Label Text="⚙️" FontSize="24"/>
+                                <Label Text="Parts" 
+                                       FontSize="12" 
+                                       TextColor="#bdc3c7"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="2" 
+                                       HorizontalOptions="Center">
+                                <Label Text="🚗" FontSize="24"/>
+                                <Label Text="Vehicles" 
+                                       FontSize="12" 
+                                       TextColor="#bdc3c7"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Footer -->
+                <Label Text="Professional Garage Management"
+                       HorizontalOptions="Center"
+                       FontSize="14"
+                       TextColor="#7f8c8d"
+                       Margin="0,20,0,0"/>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>
