@@ -4,6 +4,275 @@
              xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
              x:Class="TheGarageManagerAPP.Views.LoginView"
              x:DataType="viewmodels:LoginViewModel"
+             Title="The Garage Manager"
+             BackgroundColor="#1a1a1a">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Colors -->
+            <Color x:Key="PrimaryOrange">#FF6B00</Color>
+            <Color x:Key="DarkGray">#2c2c2c</Color>
+            <Color x:Key="LightGray">#4a4a4a</Color>
+            <Color x:Key="TextWhite">#ffffff</Color>
+            <Color x:Key="MetalSilver">#c0c0c0</Color>
+            <Color x:Key="WarningRed">#dc3545</Color>
+            <Color x:Key="LinkBlue">#17a2b8</Color>
+
+            <!-- Entry Style -->
+            <Style x:Key="GarageEntryStyle" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkGray}" />
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource MetalSilver}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Margin" Value="0,5" />
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+
+            <!-- Button Style -->
+            <Style x:Key="GarageButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryOrange}" />
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HeightRequest" Value="55" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Margin" Value="0,10" />
+            </Style>
+
+            <!-- Label Style -->
+            <Style x:Key="GarageLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+
+            <!-- Title Style -->
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryOrange}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,20,0,30" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+
+            <!-- Header Section -->
+            <Frame Grid.Row="0" 
+                   BackgroundColor="{StaticResource DarkGray}"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   Padding="20,30,20,20">
+                <StackLayout>
+                    <!-- Logo/Icon Area -->
+                    <Frame BackgroundColor="{StaticResource PrimaryOrange}"
+                           CornerRadius="50"
+                           WidthRequest="80"
+                           HeightRequest="80"
+                           HorizontalOptions="Center"
+                           Padding="15"
+                           HasShadow="True">
+                        <Label Text="🔧"
+                               FontSize="35"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="White" />
+                    </Frame>
+
+                    <Label Text="THE GARAGE MANAGER"
+                           Style="{StaticResource TitleStyle}" />
+
+                    <Label Text="Professional Auto Service Management"
+                           TextColor="{StaticResource MetalSilver}"
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,10" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Main Content -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="#262626"
+                   CornerRadius="15"
+                   Margin="20,10"
+                   Padding="25"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Welcome Text -->
+                    <Label Text="Welcome Back!"
+                           TextColor="{StaticResource TextWhite}"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,20" />
+
+                    <!-- Email Input -->
+                    <StackLayout>
+                        <Label Text="EMAIL ADDRESS"
+                               TextColor="{StaticResource MetalSilver}"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               Margin="5,0,0,5" />
+                        <Frame BackgroundColor="{StaticResource DarkGray}"
+                               CornerRadius="8"
+                               Padding="0"
+                               HasShadow="False">
+                            <Entry Placeholder="Enter your email"
+                                   Keyboard="Email"
+                                   Text="{Binding Email}"
+                                   IsEnabled="{Binding NotInServerCall}"
+                                   Style="{StaticResource GarageEntryStyle}"
+                                   Margin="15,0" />
+                        </Frame>
+                    </StackLayout>
+
+                    <!-- Password Input -->
+                    <StackLayout>
+                        <Label Text="PASSWORD"
+                               TextColor="{StaticResource MetalSilver}"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               Margin="5,0,0,5" />
+                        <Frame BackgroundColor="{StaticResource DarkGray}"
+                               CornerRadius="8"
+                               Padding="0"
+                               HasShadow="False">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+
+                                <Entry Grid.Column="0"
+                                       Placeholder="Enter your password"
+                                       IsPassword="{Binding IsPassword}"
+                                       Text="{Binding Password}"
+                                       IsEnabled="{Binding NotInServerCall}"
+                                       Style="{StaticResource GarageEntryStyle}"
+                                       Margin="15,0,0,0" />
+
+                                <ImageButton Grid.Column="1"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Source="passwordeye.jpg"
+                                           Command="{Binding ShowPasswordCommand}"
+                                           BackgroundColor="Transparent"
+                                           Margin="0,0,10,0"
+                                           VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <!-- Login Button -->
+                    <Button Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding NotInServerCall}"
+                            Text="LOGIN TO GARAGE"
+                            Style="{StaticResource GarageButtonStyle}"
+                            Margin="0,20,0,10">
+                        <Button.Shadow>
+                            <Shadow Brush="Black" Offset="2,2" Radius="5" Opacity="0.3" />
+                        </Button.Shadow>
+                    </Button>
+
+                    <!-- Error Message -->
+                    <Label HorizontalOptions="Center"
+                           Text="{Binding ErrorMsg}"
+                           TextColor="{StaticResource WarningRed}"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           IsVisible="{Binding ErrorMsg, Converter={StaticResource StringToBoolConverter}}"
+                           Margin="0,10" />
+
+                    <!-- Loading Indicator -->
+                    <ActivityIndicator IsRunning="{Binding InServerCall}"
+                                     Color="{StaticResource PrimaryOrange}"
+                                     HeightRequest="40"
+                                     Margin="0,10" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Footer Section -->
+            <Frame Grid.Row="2"
+                   BackgroundColor="{StaticResource DarkGray}"
+                   CornerRadius="0"
+                   Padding="20"
+                   Margin="0">
+
+                <StackLayout>
+                    <!-- Divider -->
+                    <BoxView BackgroundColor="{StaticResource LightGray}"
+                             HeightRequest="1"
+                             Margin="0,0,0,15" />
+
+                    <!-- Register Link -->
+                    <Label HorizontalOptions="Center"
+                           IsEnabled="{Binding NotInServerCall}"
+                           FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Don't have an account? "
+                                      TextColor="{StaticResource MetalSilver}" />
+                                <Span Text="Register Here"
+                                      TextColor="{StaticResource PrimaryOrange}"
+                                      FontAttributes="Bold"
+                                      TextDecorations="Underline" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <!-- Footer Text -->
+                    <Label Text="© 2024 The Garage Manager - Professional Auto Service"
+                           TextColor="{StaticResource LightGray}"
+                           FontSize="12"
+                           HorizontalOptions="Center"
+                           Margin="0,15,0,0" />
+                </StackLayout>
+            </Frame>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
+             x:Class="TheGarageManagerAPP.Views.LoginView"
+             x:DataType="viewmodels:LoginViewModel"
              Title="LoginView">
     <VerticalStackLayout Padding="20" Spacing="15">
         <Entry 
@@ -16,7 +285,7 @@
                 <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
             <Entry Placeholder="Password" IsPassword="{Binding IsPassword}" Text="{Binding Password}" IsEnabled="{Binding NotInServerCall}"/>
-            <!--<Entry Grid.Column="0" Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}" Style="{StaticResource entryStyle}" />-->
+            --><!--<Entry Grid.Column="0" Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}" Style="{StaticResource entryStyle}" />--><!--
             <ImageButton Grid.Column="1" HeightRequest="25" Source="passwordeye.jpg"  Command="{Binding ShowPasswordCommand}" />
         </Grid>
         <Button
@@ -41,7 +310,24 @@
         </Label>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
     </VerticalStackLayout>
-</ContentPage>
+</ContentPage>-->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

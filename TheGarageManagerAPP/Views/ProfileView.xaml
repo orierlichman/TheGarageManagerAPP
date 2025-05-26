@@ -3,41 +3,397 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
              x:Class="TheGarageManagerAPP.Views.ProfileView"
+             x:DataType="viewmodels:ProfileViewModels"
+             Title="Profile Settings"
+             BackgroundColor="#1a1a1a">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Colors -->
+            <Color x:Key="PrimaryOrange">#FF6B00</Color>
+            <Color x:Key="DarkGray">#2c2c2c</Color>
+            <Color x:Key="LightGray">#4a4a4a</Color>
+            <Color x:Key="TextWhite">#ffffff</Color>
+            <Color x:Key="MetalSilver">#c0c0c0</Color>
+            <Color x:Key="WarningRed">#dc3545</Color>
+            <Color x:Key="SuccessGreen">#28a745</Color>
+            <Color x:Key="CardBackground">#262626</Color>
+
+            <!-- Entry Style -->
+            <Style x:Key="GarageEntryStyle" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkGray}" />
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource MetalSilver}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+
+            <!-- Picker Style -->
+            <Style x:Key="GaragePickerStyle" TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkGray}" />
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <!-- Button Style -->
+            <Style x:Key="GarageSaveButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource SuccessGreen}" />
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HeightRequest" Value="55" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Margin" Value="0,20,0,10" />
+            </Style>
+
+            <!-- Field Label Style -->
+            <Style x:Key="FieldLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource MetalSilver}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="5,0,0,8" />
+            </Style>
+
+            <!-- Error Label Style -->
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource WarningRed}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Margin" Value="5,5,0,10" />
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+
+            <!-- Section Title Style -->
+            <Style x:Key="SectionTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryOrange}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0,0,0,15" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*" Padding="0">
+
+            <!-- Header Section -->
+            <Frame Grid.Row="0" 
+                   BackgroundColor="{StaticResource DarkGray}"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   Padding="20,25,20,20">
+                <StackLayout Orientation="Horizontal" Spacing="15">
+
+                    <!-- Profile Icon -->
+                    <Frame BackgroundColor="{StaticResource PrimaryOrange}"
+                           CornerRadius="40"
+                           WidthRequest="60"
+                           HeightRequest="60"
+                           Padding="12"
+                           HasShadow="True"
+                           VerticalOptions="Center">
+                        <Label Text="👤"
+                               FontSize="25"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="White" />
+                    </Frame>
+
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="PROFILE SETTINGS"
+                               TextColor="{StaticResource PrimaryOrange}"
+                               FontSize="22"
+                               FontAttributes="Bold" />
+                        <Label Text="Manage your garage account"
+                               TextColor="{StaticResource MetalSilver}"
+                               FontSize="14" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Main Content -->
+            <StackLayout Grid.Row="1" Padding="20" Spacing="0">
+
+                <!-- Personal Information Section -->
+                <Frame BackgroundColor="{StaticResource CardBackground}"
+                       CornerRadius="12"
+                       Padding="25"
+                       HasShadow="True"
+                       Margin="0,10,0,20">
+
+                    <StackLayout Spacing="20">
+
+                        <!-- Section Title -->
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="👨‍🔧" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="PERSONAL INFORMATION"
+                                   Style="{StaticResource SectionTitleStyle}"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <BoxView BackgroundColor="{StaticResource LightGray}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10" />
+
+                        <!-- First Name Field -->
+                        <StackLayout>
+                            <Label Text="FIRST NAME"
+                                   Style="{StaticResource FieldLabelStyle}" />
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False">
+                                <Entry Text="{Binding Name}"
+                                       Placeholder="Enter your first name"
+                                       Style="{StaticResource GarageEntryStyle}"
+                                       Margin="15,0" />
+                            </Frame>
+                            <Label Text="{Binding NameError}"
+                                   Style="{StaticResource ErrorLabelStyle}"
+                                   IsVisible="{Binding ShowNameError}" />
+                        </StackLayout>
+
+                        <!-- Last Name Field -->
+                        <StackLayout>
+                            <Label Text="LAST NAME"
+                                   Style="{StaticResource FieldLabelStyle}" />
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False">
+                                <Entry Text="{Binding LastName}"
+                                       Placeholder="Enter your last name"
+                                       Style="{StaticResource GarageEntryStyle}"
+                                       Margin="15,0" />
+                            </Frame>
+                            <Label Text="{Binding LastNameError}"
+                                   Style="{StaticResource ErrorLabelStyle}"
+                                   IsVisible="{Binding ShowLastNameError}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Account Information Section -->
+                <Frame BackgroundColor="{StaticResource CardBackground}"
+                       CornerRadius="12"
+                       Padding="25"
+                       HasShadow="True"
+                       Margin="0,0,0,20">
+
+                    <StackLayout Spacing="20">
+
+                        <!-- Section Title -->
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="🔐" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="ACCOUNT SECURITY"
+                                   Style="{StaticResource SectionTitleStyle}"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <BoxView BackgroundColor="{StaticResource LightGray}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10" />
+
+                        <!-- Email Field -->
+                        <StackLayout>
+                            <Label Text="EMAIL ADDRESS"
+                                   Style="{StaticResource FieldLabelStyle}" />
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False">
+                                <Entry Text="{Binding Email}"
+                                       Placeholder="Enter your email address"
+                                       Keyboard="Email"
+                                       Style="{StaticResource GarageEntryStyle}"
+                                       Margin="15,0" />
+                            </Frame>
+                            <Label Text="{Binding EmailError}"
+                                   Style="{StaticResource ErrorLabelStyle}"
+                                   IsVisible="{Binding ShowEmailError}" />
+                        </StackLayout>
+
+                        <!-- Password Field -->
+                        <StackLayout>
+                            <Label Text="PASSWORD"
+                                   Style="{StaticResource FieldLabelStyle}" />
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False">
+                                <Entry Text="{Binding Password}"
+                                       Placeholder="Enter new password"
+                                       IsPassword="True"
+                                       Style="{StaticResource GarageEntryStyle}"
+                                       Margin="15,0" />
+                            </Frame>
+                            <Label Text="{Binding PasswordError}"
+                                   Style="{StaticResource ErrorLabelStyle}"
+                                   IsVisible="{Binding ShowPasswordError}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Status Section -->
+                <Frame BackgroundColor="{StaticResource CardBackground}"
+                       CornerRadius="12"
+                       Padding="25"
+                       HasShadow="True"
+                       Margin="0,0,0,30">
+
+                    <StackLayout Spacing="20">
+
+                        <!-- Section Title -->
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="🏷️" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="PROFESSIONAL STATUS"
+                                   Style="{StaticResource SectionTitleStyle}"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <BoxView BackgroundColor="{StaticResource LightGray}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10" />
+
+                        <!-- Status Display Field -->
+                        <StackLayout>
+                            <Label Text="CURRENT STATUS"
+                                   Style="{StaticResource FieldLabelStyle}" />
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False">
+                                <Entry Text="{Binding Status}"
+                                       IsReadOnly="True"
+                                       Style="{StaticResource GarageEntryStyle}"
+                                       Margin="15,0" />
+                            </Frame>
+                        </StackLayout>
+
+                        <!-- Status Picker -->
+                        <StackLayout>
+                            <Label Text="CHANGE STATUS"
+                                   Style="{StaticResource FieldLabelStyle}" />
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="15,0"
+                                   HasShadow="False">
+                                <Picker SelectedItem="{Binding SelectedStatus}"
+                                        ItemsSource="{Binding StatusModels}"
+                                        ItemDisplayBinding="{Binding StatusName}"
+                                        Style="{StaticResource GaragePickerStyle}"
+                                        Title="Select your professional status" />
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Action Section -->
+                <StackLayout Spacing="15">
+
+                    <!-- Save Button -->
+                    <Button Text="💾 SAVE PROFILE CHANGES"
+                            Command="{Binding UpdateUserCommand}"
+                            Style="{StaticResource GarageSaveButtonStyle}">
+                        <Button.Shadow>
+                            <Shadow Brush="Black" Offset="2,2" Radius="5" Opacity="0.3" />
+                        </Button.Shadow>
+                    </Button>
+
+                    <!-- Loading Indicator -->
+                    <ActivityIndicator IsVisible="{Binding InServerCall}"
+                                     IsRunning="{Binding InServerCall}"
+                                     Color="{StaticResource PrimaryOrange}"
+                                     HeightRequest="40"
+                                     Margin="0,10" />
+
+                    <!-- Success Message Area -->
+                    <Frame BackgroundColor="{StaticResource SuccessGreen}"
+                           CornerRadius="8"
+                           Padding="15"
+                           IsVisible="False"
+                           x:Name="SuccessFrame">
+                        <Label Text="✅ Profile updated successfully!"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center" />
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
+             x:Class="TheGarageManagerAPP.Views.ProfileView"
              Title="ProfileView">
     <ContentPage.Content>
         <StackLayout Padding="20">
 
-            <!-- First Name -->
+            --><!-- First Name --><!--
             <Label Text="First Name" FontSize="Medium" />
             <Entry Text="{Binding Name}" Placeholder="Enter First Name" />
             <Label Text="{Binding NameError}" TextColor="Red" IsVisible="{Binding ShowNameError}" />
 
-            <!-- Last Name -->
+            --><!-- Last Name --><!--
             <Label Text="Last Name" FontSize="Medium" />
             <Entry Text="{Binding LastName}" Placeholder="Enter Last Name" />
             <Label Text="{Binding LastNameError}" TextColor="Red" IsVisible="{Binding ShowLastNameError}" />
 
-            <!-- Email -->
+            --><!-- Email --><!--
             <Label Text="Email" FontSize="Medium" />
             <Entry Text="{Binding Email}" Placeholder="Enter Email" />
             <Label Text="{Binding EmailError}" TextColor="Red" IsVisible="{Binding ShowEmailError}" />
 
-            <!-- Password -->
+            --><!-- Password --><!--
             <Label Text="Password" FontSize="Medium" />
             <Entry Text="{Binding Password}" Placeholder="Enter Password" />
             <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}" />
 
-             <!--Status--> 
+             --><!--Status--><!-- 
             <Label Text="Status" FontSize="Medium" />
             <Entry Text="{Binding Status}" />
             <Picker SelectedItem="{Binding SelectedStatus}" ItemsSource="{Binding StatusModels}" ItemDisplayBinding="{Binding StatusName}" />
 
-            <!-- Save Button -->
+            --><!-- Save Button --><!--
             <Button Text="Save Profile" Command="{Binding UpdateUserCommand}"  />
 
-            <!-- Loading Indicator (optional) -->
+            --><!-- Loading Indicator (optional) --><!--
             <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}" />
 
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</ContentPage>-->

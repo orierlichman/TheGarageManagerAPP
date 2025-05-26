@@ -4,10 +4,409 @@
              xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
              x:Class="TheGarageManagerAPP.Views.CarRepairView"
              x:DataType="viewmodels:CarRepairViewModel"
+             Title="Car Repair Service"
+             BackgroundColor="#1a1a1a">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Colors -->
+            <Color x:Key="PrimaryOrange">#FF6B00</Color>
+            <Color x:Key="DarkGray">#2c2c2c</Color>
+            <Color x:Key="LightGray">#4a4a4a</Color>
+            <Color x:Key="TextWhite">#ffffff</Color>
+            <Color x:Key="MetalSilver">#c0c0c0</Color>
+            <Color x:Key="WarningRed">#dc3545</Color>
+            <Color x:Key="SuccessGreen">#28a745</Color>
+            <Color x:Key="CardBackground">#262626</Color>
+            <Color x:Key="RepairBlue">#007bff</Color>
+
+            <!-- Entry Style -->
+            <Style x:Key="GarageEntryStyle" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkGray}" />
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource MetalSilver}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+
+            <!-- DatePicker Style -->
+            <Style x:Key="GarageDatePickerStyle" TargetType="DatePicker">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkGray}" />
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <!-- Save Button Style -->
+            <Style x:Key="GarageSaveButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource SuccessGreen}" />
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HeightRequest" Value="55" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Margin" Value="10,20,10,10" />
+            </Style>
+
+            <!-- Field Label Style -->
+            <Style x:Key="FieldLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource MetalSilver}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="5,0,0,8" />
+            </Style>
+
+            <!-- Error Label Style -->
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource WarningRed}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Margin" Value="5,5,0,0" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+
+            <!-- Section Title Style -->
+            <Style x:Key="SectionTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryOrange}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0,0,0,15" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*" Padding="0">
+
+            <!-- Header Section -->
+            <Frame Grid.Row="0" 
+                   BackgroundColor="{StaticResource DarkGray}"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   Padding="20,25,20,20">
+                <StackLayout Orientation="Horizontal" Spacing="15">
+
+                    <!-- Repair Service Icon -->
+                    <Frame BackgroundColor="{StaticResource RepairBlue}"
+                           CornerRadius="40"
+                           WidthRequest="60"
+                           HeightRequest="60"
+                           Padding="12"
+                           HasShadow="True"
+                           VerticalOptions="Center">
+                        <Label Text="🔧"
+                               FontSize="25"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="White" />
+                    </Frame>
+
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="CAR REPAIR SERVICE"
+                               TextColor="{StaticResource PrimaryOrange}"
+                               FontSize="22"
+                               FontAttributes="Bold" />
+                        <Label Text="Professional automotive repair documentation"
+                               TextColor="{StaticResource MetalSilver}"
+                               FontSize="14" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Main Content -->
+            <StackLayout Grid.Row="1" 
+                        Padding="20" 
+                        Spacing="25"
+                        IsEnabled="{Binding NotInServerCall}">
+
+                <!-- Repair Details Section -->
+                <Frame BackgroundColor="{StaticResource CardBackground}"
+                       CornerRadius="12"
+                       Padding="25"
+                       HasShadow="True">
+
+                    <StackLayout Spacing="25">
+
+                        <!-- Section Title -->
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="📋" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="REPAIR DETAILS"
+                                   Style="{StaticResource SectionTitleStyle}"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <BoxView BackgroundColor="{StaticResource LightGray}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,15" />
+
+                        <!-- Description Field -->
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0"
+                                       Text="REPAIR DESCRIPTION"
+                                       Style="{StaticResource FieldLabelStyle}" />
+
+                                <Label Grid.Column="1"
+                                       Text="{Binding DescriptionError}"
+                                       Style="{StaticResource ErrorLabelStyle}"
+                                       IsVisible="{Binding ShowDescriptionError}" />
+                            </Grid>
+
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False">
+                                <Entry Text="{Binding Description}"
+                                       Placeholder="Enter detailed repair description..."
+                                       Style="{StaticResource GarageEntryStyle}"
+                                       Margin="15,0" />
+                            </Frame>
+                        </StackLayout>
+
+                        <!-- Cost Field -->
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0"
+                                       Text="REPAIR COST (₪)"
+                                       Style="{StaticResource FieldLabelStyle}" />
+
+                                <Label Grid.Column="1"
+                                       Text="{Binding CostError}"
+                                       Style="{StaticResource ErrorLabelStyle}"
+                                       IsVisible="{Binding ShowCostError}" />
+                            </Grid>
+
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0"
+                                           Text="₪"
+                                           TextColor="{StaticResource PrimaryOrange}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="Center"
+                                           Margin="15,0,5,0" />
+
+                                    <Entry Grid.Column="1"
+                                           Text="{Binding Cost}"
+                                           Placeholder="0.00"
+                                           Keyboard="Numeric"
+                                           Style="{StaticResource GarageEntryStyle}"
+                                           Margin="0,0,15,0" />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+
+                        <!-- Date Field -->
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0"
+                                       Text="REPAIR DATE"
+                                       Style="{StaticResource FieldLabelStyle}" />
+
+                                <Label Grid.Column="1"
+                                       Text="{Binding DateError}"
+                                       Style="{StaticResource ErrorLabelStyle}"
+                                       IsVisible="{Binding ShowDateError}" />
+                            </Grid>
+
+                            <Frame BackgroundColor="{StaticResource DarkGray}"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0"
+                                           Text="📅"
+                                           FontSize="16"
+                                           VerticalOptions="Center"
+                                           Margin="15,0,10,0" />
+
+                                    <DatePicker Grid.Column="1"
+                                               Style="{StaticResource GarageDatePickerStyle}"
+                                               Margin="0,0,15,0" />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Additional Information Section -->
+                <Frame BackgroundColor="{StaticResource CardBackground}"
+                       CornerRadius="12"
+                       Padding="25"
+                       HasShadow="True">
+
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="ℹ️" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="REPAIR SUMMARY"
+                                   Style="{StaticResource SectionTitleStyle}"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <BoxView BackgroundColor="{StaticResource LightGray}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,15" />
+
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="10">
+
+                            <!-- Service Type -->
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="Service Type:"
+                                   TextColor="{StaticResource MetalSilver}"
+                                   FontAttributes="Bold"
+                                   Margin="0,0,15,0" />
+                            <Label Grid.Row="0" Grid.Column="1"
+                                   Text="Automotive Repair"
+                                   TextColor="{StaticResource TextWhite}" />
+
+                            <!-- Status -->
+                            <Label Grid.Row="1" Grid.Column="0"
+                                   Text="Status:"
+                                   TextColor="{StaticResource MetalSilver}"
+                                   FontAttributes="Bold"
+                                   Margin="0,0,15,0" />
+                            <Label Grid.Row="1" Grid.Column="1"
+                                   Text="In Progress"
+                                   TextColor="{StaticResource PrimaryOrange}"
+                                   FontAttributes="Bold" />
+
+                            <!-- Priority -->
+                            <Label Grid.Row="2" Grid.Column="0"
+                                   Text="Priority:"
+                                   TextColor="{StaticResource MetalSilver}"
+                                   FontAttributes="Bold"
+                                   Margin="0,0,15,0" />
+                            <Label Grid.Row="2" Grid.Column="1"
+                                   Text="Standard"
+                                   TextColor="{StaticResource RepairBlue}"
+                                   FontAttributes="Bold" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Action Section -->
+                <StackLayout Spacing="15">
+
+                    <!-- Save Button -->
+                    <Button Text="💾 SAVE REPAIR RECORD"
+                            Command="{Binding SaveCommand}"
+                            IsEnabled="{Binding NotInServerCall}"
+                            Style="{StaticResource GarageSaveButtonStyle}">
+                        <Button.Shadow>
+                            <Shadow Brush="Black" Offset="2,2" Radius="5" Opacity="0.3" />
+                        </Button.Shadow>
+                    </Button>
+
+                    <!-- Loading Indicator -->
+                    <ActivityIndicator IsVisible="{Binding InServerCall}"
+                                     IsRunning="{Binding InServerCall}"
+                                     Color="{StaticResource PrimaryOrange}"
+                                     HeightRequest="40"
+                                     Margin="0,10" />
+
+                    <!-- Action Buttons Row --><!--
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,10,0,0">
+
+                        <Button Grid.Column="0"
+                                Text="📸 Add Photos"
+                                BackgroundColor="{StaticResource RepairBlue}"
+                                TextColor="White"
+                                FontSize="14"
+                                HeightRequest="45"
+                                CornerRadius="8">
+                            <Button.Shadow>
+                                <Shadow Brush="Black" Offset="1,1" Radius="3" Opacity="0.2" />
+                            </Button.Shadow>
+                        </Button>
+
+                        <Button Grid.Column="1"
+                                Text="📄 Generate Report"
+                                BackgroundColor="{StaticResource LightGray}"
+                                TextColor="White"
+                                FontSize="14"
+                                HeightRequest="45"
+                                CornerRadius="8">
+                            <Button.Shadow>
+                                <Shadow Brush="Black" Offset="1,1" Radius="3" Opacity="0.2" />
+                            </Button.Shadow>
+                        </Button>
+                    </Grid>-->
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
+             x:Class="TheGarageManagerAPP.Views.CarRepairView"
+             x:DataType="viewmodels:CarRepairViewModel"
              Title="CarRepairView">
     <Grid>
         <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
-            <!-- Description -->
+            --><!-- Description --><!--
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -17,7 +416,7 @@
                 <Label Text="{Binding DescriptionError}" IsVisible="{Binding ShowDescriptionError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
             </Grid>
             <Entry Placeholder="Type Description" Text="{Binding Description}" Style="{StaticResource entryStyle}" />
-            <!-- Cost -->
+            --><!-- Cost --><!--
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -27,9 +426,9 @@
                 <Label Text="{Binding CostError}" IsVisible="{Binding ShowCostError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
             </Grid>
             <Entry Placeholder="Cost: " Text="{Binding Cost}" Style="{StaticResource entryStyle}" />
-            <!-- Date -->
+            --><!-- Date -->
 
-            <!-- לא עובד cost -->
+            <!-- לא עובד cost --><!--
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -40,7 +439,7 @@
             </Grid>
             <DatePicker Date="{Binding }"  Style="{StaticResource entryStyle}"></DatePicker>
 
-            <!-- Save Buttons -->
+            --><!-- Save Buttons --><!--
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -49,11 +448,5 @@
                 <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" BackgroundColor="Green" Margin="5" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Grid>
         </VerticalStackLayout>
-        <!-- Centered ActivityIndicator -->
-        <!--
-        <ActivityIndicator IsRunning="{Binding InServerCall}" 
-           Color="Red" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />-->
     </Grid>
-</ContentPage>
+</ContentPage>-->
