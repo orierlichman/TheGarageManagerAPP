@@ -13,6 +13,7 @@ namespace TheGarageManagerApp.Services
 {
     public class TheGarageManagerWebAPIProxy
     {
+        /*
         #region without tunnel
         
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
@@ -25,16 +26,16 @@ namespace TheGarageManagerApp.Services
             DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5055" : $"http://{serverIP}:5055";
         
         #endregion
-
+        */
         #region with tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        /*
+        
         private static string serverIP = "l4dfcs7m-5055.euw.devtunnels.ms";
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://l4dfcs7m-5055.euw.devtunnels.ms/api/";
         private static string ImageBaseAddress = "https://l4dfcs7m-5055.euw.devtunnels.ms/";
-        */
+       
         #endregion
 
         public TheGarageManagerWebAPIProxy()
@@ -472,6 +473,37 @@ namespace TheGarageManagerApp.Services
 
                     // Deserialize into your custom model (AppointmentModels)
                     List<AppointmentModels>? result = JsonSerializer.Deserialize<List<AppointmentModels>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<VehicleModels>?> GetGarageVehicles()
+        {
+            string url = $"{this.baseUrl}getCars";
+            try
+            {
+                
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    // Deserialize into your custom model (AppointmentModels)
+                    List<VehicleModels>? result = JsonSerializer.Deserialize<List<VehicleModels>>(resContent, options);
                     return result;
                 }
                 else

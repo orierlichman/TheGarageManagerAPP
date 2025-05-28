@@ -257,7 +257,7 @@
                                            VerticalOptions="Center"
                                            Margin="15,0,10,0" />
 
-                                    <DatePicker Grid.Column="1"
+                                    <DatePicker Grid.Column="1" Date="{Binding Date}"
                                                Style="{StaticResource GarageDatePickerStyle}"
                                                Margin="0,0,15,0" />
                                 </Grid>

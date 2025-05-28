@@ -40,7 +40,7 @@ namespace TheGarageManagerAPP.ViewModels
             DescriptionError = "Description is required";
             CostError = "Cost is negative";
             DateError = "the Date is future";
-
+            Date = DateTime.Now.Date;
         }
 
 
@@ -185,16 +185,8 @@ namespace TheGarageManagerAPP.ViewModels
 
         private void ValidateDate()
         {
-            bool x;
-            if (this.Date < DateTime.Now)
-            {
-                x = true;
-            }
-            else
-            {
-                x = false;
-            }
-            this.ShowCostError = x;
+            
+            this.ShowDateError = false;
         }
         #endregion
 
@@ -209,14 +201,15 @@ namespace TheGarageManagerAPP.ViewModels
 
             if (!ShowDescriptionError && !ShowCostError && !ShowDateError)
             {
+                UserModels u = ((App)Application.Current).LoggedInUser;
                 //Create a new CarRepairModels object with the data from the CarRepair form
                 var newRepair = new CarRepairModels
                 {
                     Cost = Cost,
                     RepairDate = Date,
                     DescriptionCar = Description,
-                    GarageID = 103,
-                    //LicensePlate =  ofer!!!!!
+                    GarageID = u.UserGarageID,
+                    LicensePlate = TheVehicle.LicensePlate
                 };
 
                 //Call the CarRepair method on the proxy to carRepair the new user

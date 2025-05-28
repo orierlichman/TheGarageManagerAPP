@@ -16,6 +16,8 @@ namespace TheGarageManagerAPP.Models
         public string Manufacturer { get; set; }
         public int CurrentMileage { get; set; }
         public string ImageURL { get; set; }
+
+        public List<CarRepairModels>? CarRepairs { get; set; }
     }
 
     

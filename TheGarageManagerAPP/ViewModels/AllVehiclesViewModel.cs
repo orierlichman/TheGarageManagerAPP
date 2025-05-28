@@ -17,7 +17,7 @@ namespace TheGarageManagerAPP.ViewModels
 
         private string _searchText;
 
-        private GarageFinderServiceProxy proxy;
+        private TheGarageManagerWebAPIProxy proxy;
 
         private IServiceProvider serviceProvider;
 
@@ -48,12 +48,12 @@ namespace TheGarageManagerAPP.ViewModels
         }
 
 
-        public AllVehiclesViewModel(GarageFinderServiceProxy proxy, IServiceProvider serviceProvider)
+        public AllVehiclesViewModel(TheGarageManagerWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;
             this.serviceProvider = serviceProvider;
             FillAllVehicles();
-            SearchTextChangedCommand = new Command(async () => await SearchVehicles(((App)Application.Current).LoggedInUser.UserGarageID));
+            SearchTextChangedCommand = new Command(async () => await SearchVehicles());
             
 
         }
@@ -78,7 +78,7 @@ namespace TheGarageManagerAPP.ViewModels
                     { "TheVehicle", v }
                 };
                 //Navigate to the task details page
-                await Shell.Current.GoToAsync("CarRepair", navParam);
+                await Shell.Current.GoToAsync("CarRepairList", navParam);
                 SelectedVehicle = null;
                 
             }
@@ -88,30 +88,31 @@ namespace TheGarageManagerAPP.ViewModels
         public async void FillAllVehicles()
         {
             UserModels u = ((App)Application.Current).LoggedInUser;
-            List<VehicleModels> vehicle = await GetAllVehicles(u.UserGarageID);
+            List<VehicleModels>? vehicle = await proxy.GetGarageVehicles();
+            if (vehicle == null || vehicle.Count == 0)
+            {
+                GarageVehicle = new ObservableCollection<VehicleModels>();
+                return;
+            }
             GarageVehicle = new ObservableCollection<VehicleModels>(vehicle);
+            allVehicles = vehicle;
         }
 
-        public async Task<List<VehicleModels>> GetAllVehicles(int garageID)
-        {
-            List<VehicleModels> list = /*await*/ this.proxy.GetVehicles(garageID);
-            return list;
-        }
+        private List<VehicleModels> allVehicles = new List<VehicleModels>();
 
 
-        private async Task SearchVehicles(int garageID)
+        private async Task SearchVehicles()
         {
-            var vehicles = /*await*/ proxy.GetVehicles(garageID);
+            var vehicles = allVehicles.Where(v=>v.LicensePlate.Contains(SearchText, StringComparison.OrdinalIgnoreCase)).ToList();
             if (vehicles != null)
             {
                 if (string.IsNullOrWhiteSpace(SearchText))
                 {
-                    GarageVehicle = new ObservableCollection<VehicleModels>(vehicles);
+                    GarageVehicle = new ObservableCollection<VehicleModels>(allVehicles);
                 }
                 else
                 {
-                    GarageVehicle = new ObservableCollection<VehicleModels>(
-                        vehicles.FindAll(g => g.LicensePlate.Contains(SearchText, StringComparison.OrdinalIgnoreCase)));
+                    GarageVehicle = new ObservableCollection<VehicleModels>(vehicles);
                 }
             }
         }

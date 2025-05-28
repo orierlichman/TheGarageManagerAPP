@@ -18,6 +18,7 @@ namespace TheGarageManagerAPP
             Routing.RegisterRoute("llVehiclesView", typeof(AllVehiclesView));
             Routing.RegisterRoute("updateProfileView", typeof(ProfileView));
             Routing.RegisterRoute("CarRepair", typeof(CarRepairView));
+            Routing.RegisterRoute("CarRepairList", typeof(CarRepairsListView));
         }
 
     }

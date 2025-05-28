@@ -42,6 +42,7 @@ namespace TheGarageManagerAPP
             builder.Services.AddTransient<PartsView>();
             builder.Services.AddTransient<ProfileView>();
             builder.Services.AddTransient<TheGarageHomaPageView>();
+            builder.Services.AddTransient<CarRepairsListView>();
             return builder;
         }
 
@@ -62,6 +63,7 @@ namespace TheGarageManagerAPP
             builder.Services.AddTransient<PartsViewModels>();
             builder.Services.AddTransient<ProfileViewModels>();
             builder.Services.AddTransient<TheGarageHomePageViewModel>();
+            builder.Services.AddTransient<CarRepairsList>();
             return builder;
         }
 
