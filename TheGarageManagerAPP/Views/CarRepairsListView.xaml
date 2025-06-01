@@ -2,24 +2,235 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheGarageManagerAPP.Views.CarRepairsListView"
-             Title="CarRepairsListView">
-    <VerticalStackLayout>
-        <Button Text="Add New Repair" Command="{Binding NewrepairCommand}"></Button>
-    <CollectionView
-    ItemsSource="{Binding CarRepairs}"
-    SelectionMode="None">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame Margin="5" Padding="10" BorderColor="Gray">
+             Title="היסטוריית טיפולים"
+             BackgroundColor="#1a1a1a">
+
+    <Grid>
+        <!-- Background Pattern -->
+        <BoxView BackgroundColor="#1a1a1a" />
+
+        <ScrollView>
+            <StackLayout Padding="15" Spacing="15">
+
+                <!-- Header Section -->
+                <Frame BackgroundColor="#2d2d2d" 
+                       BorderColor="#ff6b35" 
+                       CornerRadius="10"
+                       HasShadow="True"
+                       Padding="20">
                     <StackLayout>
-                        <Label Text="{Binding DescriptionCar}" FontAttributes="Bold" />
-                        <Label Text="{Binding RepairDate, StringFormat='Date: {0:yyyy-MM-dd}'}" />
-                            <Label Text="{Binding Cost, StringFormat='Cost: ₪{0}'}" />
+                        <Label Text="🔧 מוסך הגראז'" 
+                               FontSize="28" 
+                               FontAttributes="Bold"
+                               TextColor="#ff6b35"
+                               HorizontalOptions="Center" />
+                        <Label Text="היסטוריית טיפולים ברכב" 
+                               FontSize="16" 
+                               TextColor="#cccccc"
+                               HorizontalOptions="Center"
+                               Margin="0,5,0,0" />
+
+                        <!-- Vehicle Info -->
+                        <Frame BackgroundColor="#3d3d3d" 
+                               BorderColor="#666666"
+                               CornerRadius="8"
+                               Margin="0,15,0,0"
+                               Padding="15">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="🚗" FontSize="20" VerticalOptions="Center" />
+                                <StackLayout>
+                                    <Label Text="{Binding TheVehicle.Make}" 
+                                           FontSize="16" 
+                                           FontAttributes="Bold"
+                                           TextColor="#ffffff" />
+                                    <Label Text="{Binding TheVehicle.Model}" 
+                                           FontSize="14" 
+                                           TextColor="#cccccc" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
                     </StackLayout>
                 </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-        
-    </CollectionView>
-    </VerticalStackLayout>
+
+                <!-- Add New Repair Button -->
+                <Button Text="➕ הוסף טיפול חדש"
+                        Command="{Binding NewrepairCommand}"
+                        BackgroundColor="#ff6b35"
+                        TextColor="White"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        Shadow="{OnPlatform 
+                            Default={x:Null},
+                            iOS={Shadow Brush=Black, Offset='2,2', Radius=4, Opacity=0.3},
+                            Android={Shadow Brush=Black, Offset='2,2', Radius=4, Opacity=0.3}}" />
+
+                <!-- Repairs List -->
+                <Label Text="📋 רשימת טיפולים:" 
+                       FontSize="20" 
+                       FontAttributes="Bold"
+                       TextColor="#ff6b35"
+                       Margin="0,10,0,5" />
+
+                <CollectionView ItemsSource="{Binding CarRepairs}" 
+                                SelectionMode="None"
+                                BackgroundColor="Transparent">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,5">
+                                <!-- Repair Card -->
+                                <Frame BackgroundColor="#2d2d2d"
+                                       BorderColor="#555555"
+                                       CornerRadius="15"
+                                       HasShadow="True"
+                                       Padding="0">
+
+                                    <Grid>
+                                        <!-- Orange Left Border -->
+                                        <BoxView BackgroundColor="#ff6b35" 
+                                                 WidthRequest="5" 
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="Fill" />
+
+                                        <StackLayout Padding="20,15" Margin="10,0,0,0">
+
+                                            <!-- Repair Header -->
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Column="0"
+                                                       Text="{Binding DescriptionCar}" 
+                                                       FontSize="18"
+                                                       FontAttributes="Bold"
+                                                       TextColor="#ffffff"
+                                                       LineBreakMode="WordWrap" />
+
+                                                <Frame Grid.Column="1"
+                                                       BackgroundColor="#ff6b35"
+                                                       Padding="8,4"
+                                                       CornerRadius="12"
+                                                       HasShadow="False">
+                                                    <Label Text="🔧" 
+                                                           FontSize="16"
+                                                           TextColor="White"
+                                                           HorizontalOptions="Center" />
+                                                </Frame>
+                                            </Grid>
+
+                                            <!-- Date and Cost Info -->
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Date -->
+                                                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                                    <Frame BackgroundColor="#3d3d3d"
+                                                           Padding="8,4"
+                                                           CornerRadius="8"
+                                                           HasShadow="False">
+                                                        <Label Text="📅" FontSize="14" />
+                                                    </Frame>
+                                                    <StackLayout VerticalOptions="Center" Margin="5,0,0,0">
+                                                        <Label Text="תאריך טיפול" 
+                                                               FontSize="12" 
+                                                               TextColor="#999999" />
+                                                        <Label Text="{Binding RepairDate, StringFormat='{0:dd/MM/yyyy}'}" 
+                                                               FontSize="14"
+                                                               FontAttributes="Bold"
+                                                               TextColor="#cccccc" />
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                                <!-- Cost -->
+                                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                                                    <Frame BackgroundColor="#3d3d3d"
+                                                           Padding="8,4"
+                                                           CornerRadius="8"
+                                                           HasShadow="False">
+                                                        <Label Text="💰" FontSize="14" />
+                                                    </Frame>
+                                                    <StackLayout VerticalOptions="Center" Margin="5,0,0,0">
+                                                        <Label Text="עלות" 
+                                                               FontSize="12" 
+                                                               TextColor="#999999" />
+                                                        <Label Text="{Binding Cost, StringFormat='₪{0:N0}'}" 
+                                                               FontSize="16"
+                                                               FontAttributes="Bold"
+                                                               TextColor="#4CAF50" />
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Grid>
+
+                                            <!-- Separator Line -->
+                                            <BoxView BackgroundColor="#444444" 
+                                                     HeightRequest="1" 
+                                                     Margin="0,10,0,5" />
+
+                                            <!-- Additional Info -->
+                                            <Label Text="לפרטים נוספים לחץ על הכרטיס" 
+                                                   FontSize="11" 
+                                                   TextColor="#888888"
+                                                   FontAttributes="Italic"
+                                                   HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <!-- Empty State -->
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <StackLayout HorizontalOptions="Center" 
+                                         VerticalOptions="Center"
+                                         Padding="40">
+                                <Frame BackgroundColor="#2d2d2d"
+                                       BorderColor="#555555"
+                                       CornerRadius="15"
+                                       Padding="30">
+                                    <StackLayout>
+                                        <Label Text="🔧" 
+                                               FontSize="48" 
+                                               HorizontalOptions="Center"
+                                               TextColor="#666666" />
+                                        <Label Text="אין טיפולים רשומים" 
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               TextColor="#999999"
+                                               HorizontalOptions="Center"
+                                               Margin="0,10,0,5" />
+                                        <Label Text="לחץ על 'הוסף טיפול חדש' כדי להתחיל" 
+                                               FontSize="14"
+                                               TextColor="#777777"
+                                               HorizontalOptions="Center"
+                                               HorizontalTextAlignment="Center" />
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+                <!-- Footer -->
+                <StackLayout Margin="0,20,0,10">
+                    <BoxView BackgroundColor="#ff6b35" 
+                             HeightRequest="2" 
+                             HorizontalOptions="Fill" />
+                    <Label Text="מוסך הגראז' - ניהול מקצועי של הרכב שלך" 
+                           FontSize="12" 
+                           TextColor="#888888"
+                           HorizontalOptions="Center"
+                           Margin="0,10,0,0" />
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
