@@ -60,5 +60,18 @@ namespace TheGarageManagerAPP.ViewModels
 
             }
         }
+
+        public override void Refresh()
+        {
+            base.Refresh();
+            if (TheVehicle != null)
+            {
+                CarRepairs = new ObservableCollection<CarRepairModels>(TheVehicle.CarRepairs ?? new List<CarRepairModels>());
+            }
+            else
+            {
+                CarRepairs = new ObservableCollection<CarRepairModels>();
+            }
+        }
     }
 }

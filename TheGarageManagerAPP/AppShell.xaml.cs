@@ -21,5 +21,14 @@ namespace TheGarageManagerAPP
             Routing.RegisterRoute("CarRepairList", typeof(CarRepairsListView));
         }
 
+        public event Action<Type> DataChanged;
+        public void Refresh(Type type)
+        {
+            if (DataChanged != null)
+            {
+                DataChanged(type);
+            }
+        }
+
     }
 }

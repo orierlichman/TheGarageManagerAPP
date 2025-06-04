@@ -221,6 +221,8 @@ namespace TheGarageManagerAPP.ViewModels
                 if (newRepair != null)
                 {
                     InServerCall = false;
+                    TheVehicle.CarRepairs.Add(newRepair);   
+                    ((AppShell)Shell.Current).Refresh(typeof(CarRepairsList));
                     ((App)(Application.Current)).MainPage.Navigation.PopAsync();
                 }
                 else

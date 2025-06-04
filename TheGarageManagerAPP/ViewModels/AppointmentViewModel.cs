@@ -22,13 +22,21 @@ namespace TheGarageManagerAPP.ViewModels
             InServerCall = false;
             OnApproveCommand = new Command<AppointmentModels>(OnApprove);
             OnDeclineCommand = new Command<AppointmentModels>(OnDecline);
+            RefreshCommand = new Command(Refresh);
             TransferAppointmentsCommand = new Command(async () => await TransferAppointments());
             Appointment = new ObservableCollection<AppointmentModels>();
             InitData();
         }
 
+        public Command RefreshCommand { get; set; }
+        public override void Refresh()
+        {
+            base.Refresh();
+            InitData();
+        }
         private async void InitData()
         {
+            InServerCall = true;
             List<AppointmentStatusModels> statuses = ((App)Application.Current).AppointmentStatuses;
             AppStatuses = new ObservableCollection<AppointmentStatusModels>(statuses);
             List<AppointmentModels>? list = await this.proxy.GetAppointmentsAsync();
@@ -40,7 +48,7 @@ namespace TheGarageManagerAPP.ViewModels
                 allAppointments = new List<AppointmentModels>();
 
             SelectedStatus = AppStatuses[0];
-            
+            InServerCall = false;
         }
         public Command OnApproveCommand { get; set; }
         public Command OnDeclineCommand { get; set; }

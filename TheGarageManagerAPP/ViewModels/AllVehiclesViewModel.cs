@@ -54,8 +54,14 @@ namespace TheGarageManagerAPP.ViewModels
             this.serviceProvider = serviceProvider;
             FillAllVehicles();
             SearchTextChangedCommand = new Command(async () => await SearchVehicles());
-            
+            RefreshCommand = new Command(Refresh);
 
+        }
+        public Command RefreshCommand { get; set; }
+        public override void Refresh()
+        {
+            base.Refresh();
+            FillAllVehicles();
         }
 
         private VehicleModels selectedVehicle;
@@ -87,6 +93,7 @@ namespace TheGarageManagerAPP.ViewModels
 
         public async void FillAllVehicles()
         {
+            InServerCall = true;
             UserModels u = ((App)Application.Current).LoggedInUser;
             List<VehicleModels>? vehicle = await proxy.GetGarageVehicles();
             if (vehicle == null || vehicle.Count == 0)
@@ -96,6 +103,7 @@ namespace TheGarageManagerAPP.ViewModels
             }
             GarageVehicle = new ObservableCollection<VehicleModels>(vehicle);
             allVehicles = vehicle;
+            InServerCall = false;
         }
 
         private List<VehicleModels> allVehicles = new List<VehicleModels>();
