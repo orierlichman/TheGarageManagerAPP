@@ -14,5 +14,6 @@ namespace TheGarageManagerAPP.Models
         public string? LicensePlate { get; set; }
         public int? AppointmentStatusId { get; set; }
         public DateTime? ConfirmDate { get; set; }
+
     }
 }

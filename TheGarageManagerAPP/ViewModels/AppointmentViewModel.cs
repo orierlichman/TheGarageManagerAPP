@@ -80,15 +80,15 @@ namespace TheGarageManagerAPP.ViewModels
 
         private async void OnApprove(AppointmentModels appointment)
         {
-            appointment.AppointmentStatusId = 1;
-            await proxy.UpdateAppointmentStatusAsync(appointment);
+            await proxy.UpdateAppointmentStatusAsync(appointment.AppointmentID, 1);
+            appointment.AppointmentStatusId = 1; // עדכון הסטטוס במודל
             OnStatusChange();
         }
 
         private async void OnDecline(AppointmentModels appointment)
         {
-            appointment.AppointmentStatusId = 2;
-            await proxy.UpdateAppointmentStatusAsync(appointment);
+            await proxy.UpdateAppointmentStatusAsync(appointment.AppointmentID, 2);
+            appointment.AppointmentStatusId = 2; // עדכון הסטטוס במודל
             OnStatusChange();
         }
 
@@ -141,9 +141,10 @@ namespace TheGarageManagerAPP.ViewModels
                 if (selectedStatus != value)
                 {
                     selectedStatus = value;
-                    OnStatusChange();
+                    
                     OnPropertyChanged(nameof(SelectedStatus));
                 }
+                OnStatusChange();
             }
         }
 

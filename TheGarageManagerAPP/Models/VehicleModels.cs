@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheGarageManagerApp.Services;
 
 namespace TheGarageManagerAPP.Models
 {
@@ -18,6 +19,14 @@ namespace TheGarageManagerAPP.Models
         public string ImageURL { get; set; }
 
         public List<CarRepairModels>? CarRepairs { get; set; }
+
+        public string ImageDefaultURL
+        {
+            get
+            {
+                return TheGarageManagerWebAPIProxy.ImageBaseAddress + $"/carImages/{Manufacturer}.jpg";
+            }
+        }
     }
 
     

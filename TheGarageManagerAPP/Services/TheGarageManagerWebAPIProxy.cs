@@ -22,7 +22,7 @@ namespace TheGarageManagerApp.Services
         //private string baseUrl;
         //public static string BaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
         //    DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5055/api/" : $"http://{serverIP}:5055/api/";
-        //private static string ImageBaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
+        //public static string ImageBaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
         //    DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5055" : $"http://{serverIP}:5055";
 
         //#endregion
@@ -34,7 +34,7 @@ namespace TheGarageManagerApp.Services
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://l4dfcs7m-5055.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://l4dfcs7m-5055.euw.devtunnels.ms/";
+        public static string ImageBaseAddress = "https://l4dfcs7m-5055.euw.devtunnels.ms/";
 
         #endregion
 
@@ -364,15 +364,15 @@ namespace TheGarageManagerApp.Services
 
 
 
-        public async Task<AppointmentModels> UpdateAppointmentStatusAsync(AppointmentModels updateModel)
+        public async Task<AppointmentModels> UpdateAppointmentStatusAsync(int appointmentid,int statusid)
         {
             // הגדרת ה-URI של ה-API
-            string url = $"{this.baseUrl}updateAppointmentStatus";
+            string url = $"{this.baseUrl}updateAppointmentStatus?statusid={statusid}";
 
             try
             {
                 // המרת ה-Appointment Model ל-JSON
-                string json = JsonSerializer.Serialize(updateModel);
+                string json = JsonSerializer.Serialize(appointmentid);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 // שליחת הבקשה ב-POST עם ה-Model
