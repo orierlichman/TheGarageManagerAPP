@@ -209,7 +209,7 @@
                                   Style="{StaticResource labelErrorStyle}" />
                         </StackLayout>
 
-                        <!-- User Type Selection -->
+                        <!-- User Type Selection --><!--
                         <StackLayout>
                             <Label Text="⚙️ סוג משתמש" Style="{StaticResource labelNameStyle}" />
                             <Frame Style="{StaticResource garageFieldContainer}" HeightRequest="60">
@@ -223,7 +223,7 @@
                                       FontFamily="OpenSansRegular"
                                       FontSize="16" />
                             </Frame>
-                        </StackLayout>
+                        </StackLayout>-->
 
                     </VerticalStackLayout>
                 </Frame>

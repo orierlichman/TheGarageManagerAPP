@@ -243,7 +243,7 @@
                     </StackLayout>
                 </Frame>
 
-                <!-- Status Section -->
+                <!-- Status Section --><!--
                 <Frame BackgroundColor="{StaticResource CardBackground}"
                        CornerRadius="12"
                        Padding="25"
@@ -252,7 +252,7 @@
 
                     <StackLayout Spacing="20">
 
-                        <!-- Section Title -->
+                        --><!-- Section Title --><!--
                         <StackLayout Orientation="Horizontal" Spacing="10">
                             <Label Text="🏷️" FontSize="18" VerticalOptions="Center" />
                             <Label Text="PROFESSIONAL STATUS"
@@ -264,7 +264,7 @@
                                  HeightRequest="1"
                                  Margin="0,0,0,10" />
 
-                        <!-- Status Display Field -->
+                        --><!-- Status Display Field --><!--
                         <StackLayout>
                             <Label Text="CURRENT STATUS"
                                    Style="{StaticResource FieldLabelStyle}" />
@@ -279,7 +279,7 @@
                             </Frame>
                         </StackLayout>
 
-                        <!-- Status Picker -->
+                        --><!-- Status Picker --><!--
                         <StackLayout>
                             <Label Text="CHANGE STATUS"
                                    Style="{StaticResource FieldLabelStyle}" />
@@ -295,7 +295,7 @@
                             </Frame>
                         </StackLayout>
                     </StackLayout>
-                </Frame>
+                </Frame>-->
 
                 <!-- Action Section -->
                 <StackLayout Spacing="15">
@@ -347,53 +347,3 @@
 
 
 
-
-
-
-
-
-
-
-<!--<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:TheGarageManagerAPP.ViewModels"
-             x:Class="TheGarageManagerAPP.Views.ProfileView"
-             Title="ProfileView">
-    <ContentPage.Content>
-        <StackLayout Padding="20">
-
-            --><!-- First Name --><!--
-            <Label Text="First Name" FontSize="Medium" />
-            <Entry Text="{Binding Name}" Placeholder="Enter First Name" />
-            <Label Text="{Binding NameError}" TextColor="Red" IsVisible="{Binding ShowNameError}" />
-
-            --><!-- Last Name --><!--
-            <Label Text="Last Name" FontSize="Medium" />
-            <Entry Text="{Binding LastName}" Placeholder="Enter Last Name" />
-            <Label Text="{Binding LastNameError}" TextColor="Red" IsVisible="{Binding ShowLastNameError}" />
-
-            --><!-- Email --><!--
-            <Label Text="Email" FontSize="Medium" />
-            <Entry Text="{Binding Email}" Placeholder="Enter Email" />
-            <Label Text="{Binding EmailError}" TextColor="Red" IsVisible="{Binding ShowEmailError}" />
-
-            --><!-- Password --><!--
-            <Label Text="Password" FontSize="Medium" />
-            <Entry Text="{Binding Password}" Placeholder="Enter Password" />
-            <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}" />
-
-             --><!--Status--><!-- 
-            <Label Text="Status" FontSize="Medium" />
-            <Entry Text="{Binding Status}" />
-            <Picker SelectedItem="{Binding SelectedStatus}" ItemsSource="{Binding StatusModels}" ItemDisplayBinding="{Binding StatusName}" />
-
-            --><!-- Save Button --><!--
-            <Button Text="Save Profile" Command="{Binding UpdateUserCommand}"  />
-
-            --><!-- Loading Indicator (optional) --><!--
-            <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}" />
-
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>-->
